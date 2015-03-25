@@ -294,13 +294,9 @@
                                               </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                          <Component id="lista_n2" max="32767" attributes="0"/>
-                                                          <Component id="tf_prz_sala" min="-2" pref="108" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                      <Component id="b_prz_Update1" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="lista_n2" max="32767" attributes="0"/>
+                                                      <Component id="tf_prz_sala" min="-2" pref="108" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -350,7 +346,6 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lista_n2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="b_prz_Update1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -378,7 +373,7 @@
                           <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lista_plan1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="104" max="32767" attributes="0"/>
+                      <EmptySpace pref="107" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="bFirst" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="bPrev" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -501,14 +496,6 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lista_n2ActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JToggleButton" name="b_prz_Update1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Aktualizuj"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_prz_Update1ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel24">
@@ -1293,12 +1280,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="przedmioty_plan" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="197" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="aktualizuj_przedmioty" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="pobierz_sala" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
@@ -1361,30 +1343,23 @@
                           <Component id="Zapisz_sem" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="przedmioty_plan" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="aktualizuj_przedmioty" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="godziny_plan" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="sala_plan" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Component id="pobierz_sala" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="przedmioty_plan" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="286" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="godziny_plan" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="sala_plan" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="292" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1767,14 +1742,6 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="aktualizuj_przedmioty">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Pobierz"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aktualizuj_przedmiotyActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JComboBox" name="godziny_plan">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -1795,14 +1762,6 @@
                 <Property name="text" type="java.lang.String" value="Godziny"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Pobierz"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel22">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sala"/>
@@ -1819,14 +1778,6 @@
                   </StringArray>
                 </Property>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="pobierz_sala">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Pobierz"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pobierz_salaActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -1942,10 +1893,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="Zapisz_N" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="bAktualizujNauczycieli" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lista_n" min="-2" pref="186" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="lista_n" min="-2" pref="186" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
@@ -1967,11 +1915,8 @@
                           <Component id="lista_n" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="bAktualizujNauczycieli" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel14" min="-2" pref="28" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jLabel14" min="-2" pref="28" max="-2" attributes="0"/>
+                      <EmptySpace pref="3" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="BoxTak" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="BoxNie" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2153,14 +2098,6 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lista_nActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="bAktualizujNauczycieli">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Aktualizuj List&#x119;"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAktualizujNauczycieliActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="aktualizuj_dyz">
