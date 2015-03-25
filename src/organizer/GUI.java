@@ -49,6 +49,7 @@ public final class GUI extends javax.swing.JFrame {
         System.out.println(System.getProperty("java.home"));
         initComponents();
         polacz();
+        update();
     }
     
     public void polacz() {
@@ -141,7 +142,6 @@ public final class GUI extends javax.swing.JFrame {
         bCancelNew = new javax.swing.JButton();
         jLabel23 = new javax.swing.JLabel();
         lista_n2 = new javax.swing.JComboBox();
-        b_prz_Update1 = new javax.swing.JToggleButton();
         jLabel24 = new javax.swing.JLabel();
         tf_prz_sala = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
@@ -191,13 +191,10 @@ public final class GUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         przedmioty_plan = new javax.swing.JComboBox();
-        aktualizuj_przedmioty = new javax.swing.JButton();
         godziny_plan = new javax.swing.JComboBox();
         jLabel21 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
         sala_plan = new javax.swing.JComboBox();
-        pobierz_sala = new javax.swing.JButton();
         fNauczyciele = new javax.swing.JInternalFrame();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -221,7 +218,6 @@ public final class GUI extends javax.swing.JFrame {
         BoxTak = new javax.swing.JRadioButton();
         BoxNie = new javax.swing.JRadioButton();
         lista_n = new javax.swing.JComboBox();
-        bAktualizujNauczycieli = new javax.swing.JButton();
         aktualizuj_dyz = new javax.swing.JButton();
         godziny_dyz_od_h = new javax.swing.JComboBox();
         godziny_dyz_od_m = new javax.swing.JComboBox();
@@ -411,13 +407,6 @@ public final class GUI extends javax.swing.JFrame {
             }
         });
 
-        b_prz_Update1.setText("Aktualizuj");
-        b_prz_Update1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_prz_Update1ActionPerformed(evt);
-            }
-        });
-
         jLabel24.setText("Sala:");
 
         tf_prz_sala.addActionListener(new java.awt.event.ActionListener() {
@@ -507,12 +496,9 @@ public final class GUI extends javax.swing.JFrame {
                                             .addComponent(jLabel28))
                                         .addGap(18, 18, 18)
                                         .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(fPrzedmiotyLayout.createSequentialGroup()
-                                                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(lista_n2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(tf_prz_sala, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(b_prz_Update1))
+                                            .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(lista_n2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(tf_prz_sala, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(fPrzedmiotyLayout.createSequentialGroup()
                                                 .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                     .addComponent(lista_plan1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -545,8 +531,7 @@ public final class GUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
-                    .addComponent(lista_n2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(b_prz_Update1))
+                    .addComponent(lista_n2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
@@ -568,7 +553,7 @@ public final class GUI extends javax.swing.JFrame {
                 .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28)
                     .addComponent(lista_plan1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                 .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bFirst)
                     .addComponent(bPrev)
@@ -838,13 +823,6 @@ public final class GUI extends javax.swing.JFrame {
 
         przedmioty_plan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        aktualizuj_przedmioty.setText("Pobierz");
-        aktualizuj_przedmioty.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aktualizuj_przedmiotyActionPerformed(evt);
-            }
-        });
-
         godziny_plan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         godziny_plan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -854,23 +832,9 @@ public final class GUI extends javax.swing.JFrame {
 
         jLabel21.setText("Godziny");
 
-        jButton1.setText("Pobierz");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jLabel22.setText("Sala");
 
         sala_plan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        pobierz_sala.setText("Pobierz");
-        pobierz_sala.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pobierz_salaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout fSemstrLayout = new javax.swing.GroupLayout(fSemstr.getContentPane());
         fSemstr.getContentPane().setLayout(fSemstrLayout);
@@ -884,11 +848,7 @@ public final class GUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(przedmioty_plan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(197, 197, 197)
-                        .addGroup(fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jButton1)
-                            .addComponent(aktualizuj_przedmioty)
-                            .addComponent(pobierz_sala)))
+                        .addComponent(jLabel1))
                     .addGroup(fSemstrLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -937,25 +897,20 @@ public final class GUI extends javax.swing.JFrame {
                     .addComponent(rok_s2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Zapisz_sem))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(fSemstrLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(1, 1, 1)
-                        .addGroup(fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel20)
-                            .addComponent(przedmioty_plan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(aktualizuj_przedmioty))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel21)
-                            .addComponent(godziny_plan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(sala_plan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel22)))
-                    .addComponent(pobierz_sala))
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addComponent(jLabel1)
+                .addGap(2, 2, 2)
+                .addGroup(fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(przedmioty_plan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(godziny_plan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sala_plan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22))
+                .addContainerGap(292, Short.MAX_VALUE))
         );
 
         fMain.addTab("Semestr, Plan", fSemstr);
@@ -1058,13 +1013,6 @@ public final class GUI extends javax.swing.JFrame {
             }
         });
 
-        bAktualizujNauczycieli.setText("Aktualizuj Listę");
-        bAktualizujNauczycieli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bAktualizujNauczycieliActionPerformed(evt);
-            }
-        });
-
         aktualizuj_dyz.setText("Dodaj");
         aktualizuj_dyz.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1160,9 +1108,7 @@ public final class GUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Zapisz_N)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bAktualizujNauczycieli)
-                            .addComponent(lista_n, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(lista_n, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(46, 46, 46))
         );
         fNauczycieleLayout.setVerticalGroup(
@@ -1179,10 +1125,8 @@ public final class GUI extends javax.swing.JFrame {
                     .addComponent(Zapisz_N)
                     .addComponent(lista_n, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bAktualizujNauczycieli)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, Short.MAX_VALUE)
                 .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BoxTak)
                     .addComponent(BoxNie))
@@ -1731,20 +1675,6 @@ try{
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_nazwaActionPerformed
 
-    private void bAktualizujNauczycieliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAktualizujNauczycieliActionPerformed
-        try{
-            while(rs_n.previous()) {}
-            lista_n.removeAllItems();
-            while(rs_n.next())
-            {
-                lista_n.addItem(rs_n.getString("IMIE") + " " + rs_n.getString("NAZWISKO"));
-            }
-        }
-        catch (SQLException err) {
-            System.out.println(err.getMessage());
-        }
-    }//GEN-LAST:event_bAktualizujNauczycieliActionPerformed
-
     private void lista_nActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lista_nActionPerformed
         // TODO add your handling code here:
 
@@ -2028,48 +1958,6 @@ while(rs_n.next())
             } 
     }//GEN-LAST:event_Zapisz_semActionPerformed
 
-    private void aktualizuj_przedmiotyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aktualizuj_przedmiotyActionPerformed
-         try{
-            while(rs_p.previous()) {}
-            przedmioty_plan.removeAllItems();
-            while(rs_p.next())
-            {
-                przedmioty_plan.addItem(rs_p.getString("NAZWA"));
-            }
-        }
-        catch (SQLException err) {
-            System.out.println(err.getMessage());
-        }
-    }//GEN-LAST:event_aktualizuj_przedmiotyActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       try{
-            while(rs_g.previous()) {}
-            godziny_plan.removeAllItems();
-            while(rs_g.next())
-            {
-                godziny_plan.addItem(rs_g.getString("GODZINA_OD")+" - "+rs_g.getString("GODZINA_DO"));
-            }
-        }
-        catch (SQLException err) {
-            System.out.println(err.getMessage());
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void pobierz_salaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pobierz_salaActionPerformed
-       try{
-            while(rs_p.previous()) {}
-            sala_plan.removeAllItems();
-            while(rs_p.next())
-            {
-                sala_plan.addItem(rs_p.getString("SALA"));
-            }
-        }
-        catch (SQLException err) {
-            System.out.println(err.getMessage());
-        }
-    }//GEN-LAST:event_pobierz_salaActionPerformed
-
     private void godziny_planActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_godziny_planActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_godziny_planActionPerformed
@@ -2086,8 +1974,8 @@ while(rs_n.next())
         // TODO add your handling code here:
     }//GEN-LAST:event_lista_n2ActionPerformed
 
-    private void b_prz_Update1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_prz_Update1ActionPerformed
-        // TODO add your handling code here:
+    private void update()
+    {
         try{
             while(rs_n.previous()) {}
             lista_n2.removeAllItems();
@@ -2112,16 +2000,46 @@ while(rs_n.next())
             
             while(rs_g.previous()) {}
             lista_godz1.removeAllItems();
+            
             while(rs_g.next())
             {
                 lista_godz1.addItem(rs_g.getString("ID_GODZINY") + ") " + rs_g.getTime("GODZINA_OD") + " - " + rs_g.getTime("GODZINA_DO"));
             }
+            
+            while(rs_p.previous()) {}
+            przedmioty_plan.removeAllItems();
+            while(rs_p.next())
+            {
+                przedmioty_plan.addItem(rs_p.getString("NAZWA"));
+            }
+            
+            while(rs_g.previous()) {}
+            godziny_plan.removeAllItems();
+            while(rs_g.next())
+            {
+                godziny_plan.addItem(rs_g.getString("GODZINA_OD")+" - "+rs_g.getString("GODZINA_DO"));
+            }
+            
+            while(rs_p.previous()) {}
+            sala_plan.removeAllItems();
+            while(rs_p.next())
+            {
+                sala_plan.addItem(rs_p.getString("SALA"));
+            }
+            
+            while(rs_n.previous()) {}
+            lista_n.removeAllItems();
+            while(rs_n.next())
+            {
+                lista_n.addItem(rs_n.getString("IMIE") + " " + rs_n.getString("NAZWISKO"));
+            }
+            
         }
         catch (SQLException err) {
             System.out.println(err.getMessage());
         }
-    }//GEN-LAST:event_b_prz_Update1ActionPerformed
-
+    }
+    
     private int get_id_nauczyciela()
     {
         int id_nauczyciela=0;
@@ -2227,10 +2145,8 @@ while(rs_n.next())
     private javax.swing.JButton Zapisz_N;
     private javax.swing.JButton Zapisz_sem;
     private javax.swing.JButton aktualizuj_dyz;
-    private javax.swing.JButton aktualizuj_przedmioty;
     private javax.swing.JButton anuluj_wyd;
     private javax.swing.JButton bAdd;
-    private javax.swing.JButton bAktualizujNauczycieli;
     private javax.swing.JButton bCancelNew;
     private javax.swing.JButton bFirst;
     private javax.swing.JButton bLast;
@@ -2239,7 +2155,6 @@ while(rs_n.next())
     private javax.swing.JButton bRemove;
     private javax.swing.JButton bSave;
     private javax.swing.JButton bSaveNew;
-    private javax.swing.JToggleButton b_prz_Update1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton dodaj_wyd;
@@ -2261,7 +2176,6 @@ while(rs_n.next())
     private javax.swing.JComboBox godziny_wyd;
     private javax.swing.JTextField imie;
     private javax.swing.JTextField inny_typ;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2308,7 +2222,6 @@ while(rs_n.next())
     private javax.swing.JTextField nazwisko;
     private javax.swing.JButton ost_wyd;
     private javax.swing.JButton pier_wyd;
-    private javax.swing.JButton pobierz_sala;
     private javax.swing.JToggleButton pop_wyd;
     private javax.swing.JTextField prz_info;
     private javax.swing.JComboBox przedmioty_plan;
