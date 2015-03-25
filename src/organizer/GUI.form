@@ -1,0 +1,2149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup2">
+    </Component>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="fMain" min="-2" pref="795" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="fMain" min="-2" pref="500" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JTabbedPane" name="fMain">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+      <SubComponents>
+        <Container class="javax.swing.JInternalFrame" name="fStart">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                <EmptyBorder/>
+              </Border>
+            </Property>
+            <Property name="title" type="java.lang.String" value="Start"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="visible" type="boolean" value="true"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Start">
+                <Property name="tabTitle" type="java.lang.String" value="Start"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="746" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="435" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+        </Container>
+        <Container class="javax.swing.JInternalFrame" name="fPlan">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                <EmptyBorder/>
+              </Border>
+            </Property>
+            <Property name="title" type="java.lang.String" value="Plan zaj&#x119;&#x107;"/>
+            <Property name="visible" type="boolean" value="true"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Plan zaj&#x119;&#x107;">
+                <Property name="tabTitle" type="java.lang.String" value="Plan zaj&#x119;&#x107;"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="sala_plan" min="-2" max="-2" attributes="0"/>
+                                          <Component id="godziny_plan" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="semestr" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="rok_s1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="rok_s2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="Zapisz_sem" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="280" max="-2" attributes="0"/>
+                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jScrollPane1" min="-2" pref="617" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="przedmioty_plan" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="197" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="aktualizuj_przedmioty" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="pobierz_sala" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="110" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="semestr" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rok_s1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rok_s2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Zapisz_sem" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="przedmioty_plan" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="aktualizuj_przedmioty" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="godziny_plan" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="sala_plan" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="pobierz_sala" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="142" max="-2" attributes="0"/>
+                      <EmptySpace pref="123" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Zarz&#x105;dzanie Semestrem"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel10">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Semestr"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="semestr">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="2">
+                    <StringItem index="0" value="zimowy"/>
+                    <StringItem index="1" value="letni"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel18">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Rok"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="rok_s1">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="202">
+                    <StringItem index="0" value="1900"/>
+                    <StringItem index="1" value="1901"/>
+                    <StringItem index="2" value="1902"/>
+                    <StringItem index="3" value="1903"/>
+                    <StringItem index="4" value="1904"/>
+                    <StringItem index="5" value="1905"/>
+                    <StringItem index="6" value="1906"/>
+                    <StringItem index="7" value="1907"/>
+                    <StringItem index="8" value="1908"/>
+                    <StringItem index="9" value="1909"/>
+                    <StringItem index="10" value="1910"/>
+                    <StringItem index="11" value="1911"/>
+                    <StringItem index="12" value="1912"/>
+                    <StringItem index="13" value="1913"/>
+                    <StringItem index="14" value="1914"/>
+                    <StringItem index="15" value="1915"/>
+                    <StringItem index="16" value="1916"/>
+                    <StringItem index="17" value="1917"/>
+                    <StringItem index="18" value="1918"/>
+                    <StringItem index="19" value="1919"/>
+                    <StringItem index="20" value="1920"/>
+                    <StringItem index="21" value="1921"/>
+                    <StringItem index="22" value="1922"/>
+                    <StringItem index="23" value="1923"/>
+                    <StringItem index="24" value="1924"/>
+                    <StringItem index="25" value="1925"/>
+                    <StringItem index="26" value="1926"/>
+                    <StringItem index="27" value="1927"/>
+                    <StringItem index="28" value="1928"/>
+                    <StringItem index="29" value="1929"/>
+                    <StringItem index="30" value="1930"/>
+                    <StringItem index="31" value="1931"/>
+                    <StringItem index="32" value="1932"/>
+                    <StringItem index="33" value="1933"/>
+                    <StringItem index="34" value="1934"/>
+                    <StringItem index="35" value="1935"/>
+                    <StringItem index="36" value="1936"/>
+                    <StringItem index="37" value="1937"/>
+                    <StringItem index="38" value="1938"/>
+                    <StringItem index="39" value="1939"/>
+                    <StringItem index="40" value="1940"/>
+                    <StringItem index="41" value="1941"/>
+                    <StringItem index="42" value="1942"/>
+                    <StringItem index="43" value="1943"/>
+                    <StringItem index="44" value="1944"/>
+                    <StringItem index="45" value="1945"/>
+                    <StringItem index="46" value="1946"/>
+                    <StringItem index="47" value="1947"/>
+                    <StringItem index="48" value="1948"/>
+                    <StringItem index="49" value="1949"/>
+                    <StringItem index="50" value="1950"/>
+                    <StringItem index="51" value="1951"/>
+                    <StringItem index="52" value="1952"/>
+                    <StringItem index="53" value="1953"/>
+                    <StringItem index="54" value="1954"/>
+                    <StringItem index="55" value="1955"/>
+                    <StringItem index="56" value="1956"/>
+                    <StringItem index="57" value="1957"/>
+                    <StringItem index="58" value="1958"/>
+                    <StringItem index="59" value="1959"/>
+                    <StringItem index="60" value="1960"/>
+                    <StringItem index="61" value="1961"/>
+                    <StringItem index="62" value="1962"/>
+                    <StringItem index="63" value="1963"/>
+                    <StringItem index="64" value="1964"/>
+                    <StringItem index="65" value="1965"/>
+                    <StringItem index="66" value="1966"/>
+                    <StringItem index="67" value="1967"/>
+                    <StringItem index="68" value="1968"/>
+                    <StringItem index="69" value="1969"/>
+                    <StringItem index="70" value="1970"/>
+                    <StringItem index="71" value="1971"/>
+                    <StringItem index="72" value="1972"/>
+                    <StringItem index="73" value="1973"/>
+                    <StringItem index="74" value="1974"/>
+                    <StringItem index="75" value="1975"/>
+                    <StringItem index="76" value="1976"/>
+                    <StringItem index="77" value="1977"/>
+                    <StringItem index="78" value="1978"/>
+                    <StringItem index="79" value="1979"/>
+                    <StringItem index="80" value="1980"/>
+                    <StringItem index="81" value="1981"/>
+                    <StringItem index="82" value="1982"/>
+                    <StringItem index="83" value="1983"/>
+                    <StringItem index="84" value="1984"/>
+                    <StringItem index="85" value="1985"/>
+                    <StringItem index="86" value="1986"/>
+                    <StringItem index="87" value="1987"/>
+                    <StringItem index="88" value="1988"/>
+                    <StringItem index="89" value="1989"/>
+                    <StringItem index="90" value="1990"/>
+                    <StringItem index="91" value="1991"/>
+                    <StringItem index="92" value="1992"/>
+                    <StringItem index="93" value="1993"/>
+                    <StringItem index="94" value="1994"/>
+                    <StringItem index="95" value="1995"/>
+                    <StringItem index="96" value="1996"/>
+                    <StringItem index="97" value="1997"/>
+                    <StringItem index="98" value="1998"/>
+                    <StringItem index="99" value="1999"/>
+                    <StringItem index="100" value="2000"/>
+                    <StringItem index="101" value="2001"/>
+                    <StringItem index="102" value="2002"/>
+                    <StringItem index="103" value="2003"/>
+                    <StringItem index="104" value="2004"/>
+                    <StringItem index="105" value="2005"/>
+                    <StringItem index="106" value="2006"/>
+                    <StringItem index="107" value="2007"/>
+                    <StringItem index="108" value="2008"/>
+                    <StringItem index="109" value="2009"/>
+                    <StringItem index="110" value="2010"/>
+                    <StringItem index="111" value="2011"/>
+                    <StringItem index="112" value="2012"/>
+                    <StringItem index="113" value="2013"/>
+                    <StringItem index="114" value="2014"/>
+                    <StringItem index="115" value="2015"/>
+                    <StringItem index="116" value="2016"/>
+                    <StringItem index="117" value="2017"/>
+                    <StringItem index="118" value="2018"/>
+                    <StringItem index="119" value="2019"/>
+                    <StringItem index="120" value="2020"/>
+                    <StringItem index="121" value="2021"/>
+                    <StringItem index="122" value="2022"/>
+                    <StringItem index="123" value="2023"/>
+                    <StringItem index="124" value="2024"/>
+                    <StringItem index="125" value="2025"/>
+                    <StringItem index="126" value="2026"/>
+                    <StringItem index="127" value="2027"/>
+                    <StringItem index="128" value="2028"/>
+                    <StringItem index="129" value="2029"/>
+                    <StringItem index="130" value="2030"/>
+                    <StringItem index="131" value="2031"/>
+                    <StringItem index="132" value="2032"/>
+                    <StringItem index="133" value="2033"/>
+                    <StringItem index="134" value="2034"/>
+                    <StringItem index="135" value="2035"/>
+                    <StringItem index="136" value="2036"/>
+                    <StringItem index="137" value="2037"/>
+                    <StringItem index="138" value="2038"/>
+                    <StringItem index="139" value="2039"/>
+                    <StringItem index="140" value="2040"/>
+                    <StringItem index="141" value="2041"/>
+                    <StringItem index="142" value="2042"/>
+                    <StringItem index="143" value="2043"/>
+                    <StringItem index="144" value="2044"/>
+                    <StringItem index="145" value="2045"/>
+                    <StringItem index="146" value="2046"/>
+                    <StringItem index="147" value="2047"/>
+                    <StringItem index="148" value="2048"/>
+                    <StringItem index="149" value="2049"/>
+                    <StringItem index="150" value="2050"/>
+                    <StringItem index="151" value="2051"/>
+                    <StringItem index="152" value="2052"/>
+                    <StringItem index="153" value="2053"/>
+                    <StringItem index="154" value="2054"/>
+                    <StringItem index="155" value="2055"/>
+                    <StringItem index="156" value="2056"/>
+                    <StringItem index="157" value="2057"/>
+                    <StringItem index="158" value="2058"/>
+                    <StringItem index="159" value="2059"/>
+                    <StringItem index="160" value="2060"/>
+                    <StringItem index="161" value="2061"/>
+                    <StringItem index="162" value="2062"/>
+                    <StringItem index="163" value="2063"/>
+                    <StringItem index="164" value="2064"/>
+                    <StringItem index="165" value="2065"/>
+                    <StringItem index="166" value="2066"/>
+                    <StringItem index="167" value="2067"/>
+                    <StringItem index="168" value="2068"/>
+                    <StringItem index="169" value="2069"/>
+                    <StringItem index="170" value="2070"/>
+                    <StringItem index="171" value="2071"/>
+                    <StringItem index="172" value="2072"/>
+                    <StringItem index="173" value="2073"/>
+                    <StringItem index="174" value="2074"/>
+                    <StringItem index="175" value="2075"/>
+                    <StringItem index="176" value="2076"/>
+                    <StringItem index="177" value="2077"/>
+                    <StringItem index="178" value="2078"/>
+                    <StringItem index="179" value="2079"/>
+                    <StringItem index="180" value="2080"/>
+                    <StringItem index="181" value="2081"/>
+                    <StringItem index="182" value="2082"/>
+                    <StringItem index="183" value="2083"/>
+                    <StringItem index="184" value="2084"/>
+                    <StringItem index="185" value="2085"/>
+                    <StringItem index="186" value="2086"/>
+                    <StringItem index="187" value="2087"/>
+                    <StringItem index="188" value="2088"/>
+                    <StringItem index="189" value="2089"/>
+                    <StringItem index="190" value="2090"/>
+                    <StringItem index="191" value="2091"/>
+                    <StringItem index="192" value="2092"/>
+                    <StringItem index="193" value="2093"/>
+                    <StringItem index="194" value="2094"/>
+                    <StringItem index="195" value="2095"/>
+                    <StringItem index="196" value="2096"/>
+                    <StringItem index="197" value="2097"/>
+                    <StringItem index="198" value="2098"/>
+                    <StringItem index="199" value="2099"/>
+                    <StringItem index="200" value="2100"/>
+                    <StringItem index="201" value=" "/>
+                  </StringArray>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel19">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="/"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="rok_s2">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="99">
+                    <StringItem index="0" value="01"/>
+                    <StringItem index="1" value="02"/>
+                    <StringItem index="2" value="03"/>
+                    <StringItem index="3" value="04"/>
+                    <StringItem index="4" value="05"/>
+                    <StringItem index="5" value="06"/>
+                    <StringItem index="6" value="07"/>
+                    <StringItem index="7" value="08"/>
+                    <StringItem index="8" value="09"/>
+                    <StringItem index="9" value="10"/>
+                    <StringItem index="10" value="11"/>
+                    <StringItem index="11" value="12"/>
+                    <StringItem index="12" value="13"/>
+                    <StringItem index="13" value="14"/>
+                    <StringItem index="14" value="15"/>
+                    <StringItem index="15" value="16"/>
+                    <StringItem index="16" value="17"/>
+                    <StringItem index="17" value="18"/>
+                    <StringItem index="18" value="19"/>
+                    <StringItem index="19" value="20"/>
+                    <StringItem index="20" value="21"/>
+                    <StringItem index="21" value="22"/>
+                    <StringItem index="22" value="23"/>
+                    <StringItem index="23" value="24"/>
+                    <StringItem index="24" value="25"/>
+                    <StringItem index="25" value="26"/>
+                    <StringItem index="26" value="27"/>
+                    <StringItem index="27" value="28"/>
+                    <StringItem index="28" value="29"/>
+                    <StringItem index="29" value="30"/>
+                    <StringItem index="30" value="31"/>
+                    <StringItem index="31" value="32"/>
+                    <StringItem index="32" value="33"/>
+                    <StringItem index="33" value="34"/>
+                    <StringItem index="34" value="35"/>
+                    <StringItem index="35" value="36"/>
+                    <StringItem index="36" value="37"/>
+                    <StringItem index="37" value="38"/>
+                    <StringItem index="38" value="39"/>
+                    <StringItem index="39" value="40"/>
+                    <StringItem index="40" value="41"/>
+                    <StringItem index="41" value="42"/>
+                    <StringItem index="42" value="43"/>
+                    <StringItem index="43" value="44"/>
+                    <StringItem index="44" value="45"/>
+                    <StringItem index="45" value="46"/>
+                    <StringItem index="46" value="47"/>
+                    <StringItem index="47" value="48"/>
+                    <StringItem index="48" value="49"/>
+                    <StringItem index="49" value="50"/>
+                    <StringItem index="50" value="51"/>
+                    <StringItem index="51" value="52"/>
+                    <StringItem index="52" value="53"/>
+                    <StringItem index="53" value="54"/>
+                    <StringItem index="54" value="55"/>
+                    <StringItem index="55" value="56"/>
+                    <StringItem index="56" value="57"/>
+                    <StringItem index="57" value="58"/>
+                    <StringItem index="58" value="59"/>
+                    <StringItem index="59" value="60"/>
+                    <StringItem index="60" value="61"/>
+                    <StringItem index="61" value="62"/>
+                    <StringItem index="62" value="63"/>
+                    <StringItem index="63" value="64"/>
+                    <StringItem index="64" value="65"/>
+                    <StringItem index="65" value="66"/>
+                    <StringItem index="66" value="67"/>
+                    <StringItem index="67" value="68"/>
+                    <StringItem index="68" value="69"/>
+                    <StringItem index="69" value="70"/>
+                    <StringItem index="70" value="71"/>
+                    <StringItem index="71" value="72"/>
+                    <StringItem index="72" value="73"/>
+                    <StringItem index="73" value="74"/>
+                    <StringItem index="74" value="75"/>
+                    <StringItem index="75" value="76"/>
+                    <StringItem index="76" value="77"/>
+                    <StringItem index="77" value="78"/>
+                    <StringItem index="78" value="79"/>
+                    <StringItem index="79" value="80"/>
+                    <StringItem index="80" value="81"/>
+                    <StringItem index="81" value="82"/>
+                    <StringItem index="82" value="83"/>
+                    <StringItem index="83" value="84"/>
+                    <StringItem index="84" value="85"/>
+                    <StringItem index="85" value="86"/>
+                    <StringItem index="86" value="87"/>
+                    <StringItem index="87" value="88"/>
+                    <StringItem index="88" value="89"/>
+                    <StringItem index="89" value="90"/>
+                    <StringItem index="90" value="91"/>
+                    <StringItem index="91" value="92"/>
+                    <StringItem index="92" value="93"/>
+                    <StringItem index="93" value="94"/>
+                    <StringItem index="94" value="95"/>
+                    <StringItem index="95" value="96"/>
+                    <StringItem index="96" value="97"/>
+                    <StringItem index="97" value="98"/>
+                    <StringItem index="98" value="99"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="Zapisz_sem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Zapisz"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Zapisz_semActionPerformed"/>
+              </Events>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="jTable1">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="8" rowCount="7">
+                        <Column editable="true" title="Godziny" type="java.lang.String">
+                          <Data value="08.00-10.00"/>
+                          <Data value="10.00-12.00"/>
+                          <Data value="12.00-14.00"/>
+                          <Data value="14.00-16.00"/>
+                          <Data value="16.00-18.00"/>
+                          <Data value="null"/>
+                          <Data value="null"/>
+                        </Column>
+                        <Column editable="true" title="Poniedzia&#x142;ek" type="java.lang.String"/>
+                        <Column editable="true" title="Wtorek" type="java.lang.String"/>
+                        <Column editable="true" title="&#x15a;roda" type="java.lang.String"/>
+                        <Column editable="true" title="Czwartek" type="java.lang.String"/>
+                        <Column editable="true" title="Pi&#x105;tek" type="java.lang.String"/>
+                        <Column editable="true" title="Sobota" type="java.lang.String"/>
+                        <Column editable="true" title="Niedziela" type="java.lang.String"/>
+                      </Table>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JLabel" name="jLabel1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Dodawanie planu"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel20">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Przedmiot"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="przedmioty_plan">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="Item 1"/>
+                    <StringItem index="1" value="Item 2"/>
+                    <StringItem index="2" value="Item 3"/>
+                    <StringItem index="3" value="Item 4"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="aktualizuj_przedmioty">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pobierz"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aktualizuj_przedmiotyActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="godziny_plan">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="Item 1"/>
+                    <StringItem index="1" value="Item 2"/>
+                    <StringItem index="2" value="Item 3"/>
+                    <StringItem index="3" value="Item 4"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="godziny_planActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel21">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Godziny"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pobierz"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel22">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Sala"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="sala_plan">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="Item 1"/>
+                    <StringItem index="1" value="Item 2"/>
+                    <StringItem index="2" value="Item 3"/>
+                    <StringItem index="3" value="Item 4"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="pobierz_sala">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pobierz"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pobierz_salaActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JInternalFrame" name="fPrzedmioty">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                <EmptyBorder/>
+              </Border>
+            </Property>
+            <Property name="title" type="java.lang.String" value="Przedmioty"/>
+            <Property name="visible" type="boolean" value="true"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Przedmioty">
+                <Property name="tabTitle" type="java.lang.String" value="Przedmioty"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="tf_nazwa" min="-2" pref="401" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="275" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="bFirst" min="-2" pref="99" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Component id="bSaveNew" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="bCancelNew" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="bPrev" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="bNext" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="bRemove" min="-2" pref="99" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="bAdd" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="bSave" max="32767" attributes="0"/>
+                                              <EmptySpace min="-2" pref="369" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="bLast" min="-2" pref="96" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel2" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                          <Component id="tf_nazwa" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="bFirst" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bPrev" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bNext" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bLast" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="bSave" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bRemove" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bAdd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="bSaveNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bCancelNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="296" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JTextField" name="tf_nazwa">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_nazwaActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nazwa przedmiotu:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="bNext">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nast&#x119;pny &gt;&gt;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bNextActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="bPrev">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&lt;&lt; Poprzedni"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bPrevActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="bFirst">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="|&lt; Pierwszy"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bFirstActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="bLast">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ostatni &gt;|"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bLastActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="bSave">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Zapisz"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bSaveActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="bAdd">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Dodaj"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAddActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="bRemove">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Usu&#x144;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bRemoveActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="bSaveNew">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Zapisz nowy rekord"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bSaveNewActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="bCancelNew">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Anuluj nowy rekord"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bCancelNewActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JInternalFrame" name="fWydarzenia">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                <EmptyBorder/>
+              </Border>
+            </Property>
+            <Property name="title" type="java.lang.String" value="Wydarzenia"/>
+            <Property name="visible" type="boolean" value="true"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Wydarzenia">
+                <Property name="tabTitle" type="java.lang.String" value="Wydarzenia"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="zapisz_wyd" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="anuluj_wyd" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="dodaj_wyd" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="pier_wyd" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="pop_wyd" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="nast_wyd" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="ost_wyd" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="lista_wyd" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="usun_wyd" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="zmien_wyd" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="dzien_wyd" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="miesiac_wyd" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="rok_wyd" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="typ_wydarzen" min="-2" pref="98" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="inny_typ" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="godziny_wyd" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="minuty_wyd" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="miejsce_wydarzenia" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="251" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="typ_wydarzen" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <Component id="inny_typ" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="godziny_wyd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="minuty_wyd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="dzien_wyd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="miesiac_wyd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rok_wyd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="miejsce_wydarzenia" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="dodaj_wyd" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="zapisz_wyd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="anuluj_wyd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="pier_wyd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="pop_wyd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="nast_wyd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ost_wyd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="lista_wyd" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="usun_wyd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="zmien_wyd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="179" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Typ wydarzenia:"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="typ_wydarzen">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="kolokwium"/>
+                    <StringItem index="1" value="projekt"/>
+                    <StringItem index="2" value="poprawa"/>
+                    <StringItem index="3" value="inne"/>
+                  </StringArray>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="typ_wydarzenActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Data wydarzenia"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Czas wydarzenia"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Miejsce wydarzenia"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="miejsce_wydarzenia">
+              <Properties>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="dodaj_wyd">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Dodaj"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dodaj_wydActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="zapisz_wyd">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Zapisz"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="zapisz_wydActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="anuluj_wyd">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Anuluj"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="anuluj_wydActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="pier_wyd">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="|&lt; Pierwszy"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pier_wydActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="pop_wyd">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&lt;&lt; Poprzedni"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pop_wydActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="nast_wyd">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nast&#x119;pny &gt;&gt;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nast_wydActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="ost_wyd">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ostatni &gt;|"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ost_wydActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="lista_wyd">
+            </Component>
+            <Component class="javax.swing.JButton" name="usun_wyd">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Usu&#x144;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usun_wydActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="zmien_wyd">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Zmie&#x144;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="godziny_wyd">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="24">
+                    <StringItem index="0" value="00"/>
+                    <StringItem index="1" value="01"/>
+                    <StringItem index="2" value="02"/>
+                    <StringItem index="3" value="03"/>
+                    <StringItem index="4" value="04"/>
+                    <StringItem index="5" value="05"/>
+                    <StringItem index="6" value="06"/>
+                    <StringItem index="7" value="07"/>
+                    <StringItem index="8" value="08"/>
+                    <StringItem index="9" value="09"/>
+                    <StringItem index="10" value="10"/>
+                    <StringItem index="11" value="11"/>
+                    <StringItem index="12" value="12"/>
+                    <StringItem index="13" value="13"/>
+                    <StringItem index="14" value="14"/>
+                    <StringItem index="15" value="15"/>
+                    <StringItem index="16" value="16"/>
+                    <StringItem index="17" value="17"/>
+                    <StringItem index="18" value="18"/>
+                    <StringItem index="19" value="19"/>
+                    <StringItem index="20" value="20"/>
+                    <StringItem index="21" value="21"/>
+                    <StringItem index="22" value="22"/>
+                    <StringItem index="23" value="23"/>
+                  </StringArray>
+                </Property>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="godziny_wydActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="minuty_wyd">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="61">
+                    <StringItem index="0" value="00"/>
+                    <StringItem index="1" value="01"/>
+                    <StringItem index="2" value="02"/>
+                    <StringItem index="3" value="03"/>
+                    <StringItem index="4" value="04"/>
+                    <StringItem index="5" value="05"/>
+                    <StringItem index="6" value="06"/>
+                    <StringItem index="7" value="07"/>
+                    <StringItem index="8" value="08"/>
+                    <StringItem index="9" value="09"/>
+                    <StringItem index="10" value="10"/>
+                    <StringItem index="11" value="11"/>
+                    <StringItem index="12" value="12"/>
+                    <StringItem index="13" value="13"/>
+                    <StringItem index="14" value="14"/>
+                    <StringItem index="15" value="15"/>
+                    <StringItem index="16" value="16"/>
+                    <StringItem index="17" value="17"/>
+                    <StringItem index="18" value="18"/>
+                    <StringItem index="19" value="19"/>
+                    <StringItem index="20" value="20"/>
+                    <StringItem index="21" value="21"/>
+                    <StringItem index="22" value="22"/>
+                    <StringItem index="23" value="23"/>
+                    <StringItem index="24" value="24"/>
+                    <StringItem index="25" value="25"/>
+                    <StringItem index="26" value="26"/>
+                    <StringItem index="27" value="27"/>
+                    <StringItem index="28" value="28"/>
+                    <StringItem index="29" value="29"/>
+                    <StringItem index="30" value="30"/>
+                    <StringItem index="31" value="31"/>
+                    <StringItem index="32" value="32"/>
+                    <StringItem index="33" value="33"/>
+                    <StringItem index="34" value="34"/>
+                    <StringItem index="35" value="35"/>
+                    <StringItem index="36" value="36"/>
+                    <StringItem index="37" value="37"/>
+                    <StringItem index="38" value="38"/>
+                    <StringItem index="39" value="39"/>
+                    <StringItem index="40" value="40"/>
+                    <StringItem index="41" value="41"/>
+                    <StringItem index="42" value="42"/>
+                    <StringItem index="43" value="43"/>
+                    <StringItem index="44" value="44"/>
+                    <StringItem index="45" value="45"/>
+                    <StringItem index="46" value="46"/>
+                    <StringItem index="47" value="47"/>
+                    <StringItem index="48" value="48"/>
+                    <StringItem index="49" value="49"/>
+                    <StringItem index="50" value="50"/>
+                    <StringItem index="51" value="51"/>
+                    <StringItem index="52" value="52"/>
+                    <StringItem index="53" value="53"/>
+                    <StringItem index="54" value="54"/>
+                    <StringItem index="55" value="55"/>
+                    <StringItem index="56" value="56"/>
+                    <StringItem index="57" value="57"/>
+                    <StringItem index="58" value="58"/>
+                    <StringItem index="59" value="59"/>
+                    <StringItem index="60" value=" "/>
+                  </StringArray>
+                </Property>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="rok_wyd">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="202">
+                    <StringItem index="0" value="1900"/>
+                    <StringItem index="1" value="1901"/>
+                    <StringItem index="2" value="1902"/>
+                    <StringItem index="3" value="1903"/>
+                    <StringItem index="4" value="1904"/>
+                    <StringItem index="5" value="1905"/>
+                    <StringItem index="6" value="1906"/>
+                    <StringItem index="7" value="1907"/>
+                    <StringItem index="8" value="1908"/>
+                    <StringItem index="9" value="1909"/>
+                    <StringItem index="10" value="1910"/>
+                    <StringItem index="11" value="1911"/>
+                    <StringItem index="12" value="1912"/>
+                    <StringItem index="13" value="1913"/>
+                    <StringItem index="14" value="1914"/>
+                    <StringItem index="15" value="1915"/>
+                    <StringItem index="16" value="1916"/>
+                    <StringItem index="17" value="1917"/>
+                    <StringItem index="18" value="1918"/>
+                    <StringItem index="19" value="1919"/>
+                    <StringItem index="20" value="1920"/>
+                    <StringItem index="21" value="1921"/>
+                    <StringItem index="22" value="1922"/>
+                    <StringItem index="23" value="1923"/>
+                    <StringItem index="24" value="1924"/>
+                    <StringItem index="25" value="1925"/>
+                    <StringItem index="26" value="1926"/>
+                    <StringItem index="27" value="1927"/>
+                    <StringItem index="28" value="1928"/>
+                    <StringItem index="29" value="1929"/>
+                    <StringItem index="30" value="1930"/>
+                    <StringItem index="31" value="1931"/>
+                    <StringItem index="32" value="1932"/>
+                    <StringItem index="33" value="1933"/>
+                    <StringItem index="34" value="1934"/>
+                    <StringItem index="35" value="1935"/>
+                    <StringItem index="36" value="1936"/>
+                    <StringItem index="37" value="1937"/>
+                    <StringItem index="38" value="1938"/>
+                    <StringItem index="39" value="1939"/>
+                    <StringItem index="40" value="1940"/>
+                    <StringItem index="41" value="1941"/>
+                    <StringItem index="42" value="1942"/>
+                    <StringItem index="43" value="1943"/>
+                    <StringItem index="44" value="1944"/>
+                    <StringItem index="45" value="1945"/>
+                    <StringItem index="46" value="1946"/>
+                    <StringItem index="47" value="1947"/>
+                    <StringItem index="48" value="1948"/>
+                    <StringItem index="49" value="1949"/>
+                    <StringItem index="50" value="1950"/>
+                    <StringItem index="51" value="1951"/>
+                    <StringItem index="52" value="1952"/>
+                    <StringItem index="53" value="1953"/>
+                    <StringItem index="54" value="1954"/>
+                    <StringItem index="55" value="1955"/>
+                    <StringItem index="56" value="1956"/>
+                    <StringItem index="57" value="1957"/>
+                    <StringItem index="58" value="1958"/>
+                    <StringItem index="59" value="1959"/>
+                    <StringItem index="60" value="1960"/>
+                    <StringItem index="61" value="1961"/>
+                    <StringItem index="62" value="1962"/>
+                    <StringItem index="63" value="1963"/>
+                    <StringItem index="64" value="1964"/>
+                    <StringItem index="65" value="1965"/>
+                    <StringItem index="66" value="1966"/>
+                    <StringItem index="67" value="1967"/>
+                    <StringItem index="68" value="1968"/>
+                    <StringItem index="69" value="1969"/>
+                    <StringItem index="70" value="1970"/>
+                    <StringItem index="71" value="1971"/>
+                    <StringItem index="72" value="1972"/>
+                    <StringItem index="73" value="1973"/>
+                    <StringItem index="74" value="1974"/>
+                    <StringItem index="75" value="1975"/>
+                    <StringItem index="76" value="1976"/>
+                    <StringItem index="77" value="1977"/>
+                    <StringItem index="78" value="1978"/>
+                    <StringItem index="79" value="1979"/>
+                    <StringItem index="80" value="1980"/>
+                    <StringItem index="81" value="1981"/>
+                    <StringItem index="82" value="1982"/>
+                    <StringItem index="83" value="1983"/>
+                    <StringItem index="84" value="1984"/>
+                    <StringItem index="85" value="1985"/>
+                    <StringItem index="86" value="1986"/>
+                    <StringItem index="87" value="1987"/>
+                    <StringItem index="88" value="1988"/>
+                    <StringItem index="89" value="1989"/>
+                    <StringItem index="90" value="1990"/>
+                    <StringItem index="91" value="1991"/>
+                    <StringItem index="92" value="1992"/>
+                    <StringItem index="93" value="1993"/>
+                    <StringItem index="94" value="1994"/>
+                    <StringItem index="95" value="1995"/>
+                    <StringItem index="96" value="1996"/>
+                    <StringItem index="97" value="1997"/>
+                    <StringItem index="98" value="1998"/>
+                    <StringItem index="99" value="1999"/>
+                    <StringItem index="100" value="2000"/>
+                    <StringItem index="101" value="2001"/>
+                    <StringItem index="102" value="2002"/>
+                    <StringItem index="103" value="2003"/>
+                    <StringItem index="104" value="2004"/>
+                    <StringItem index="105" value="2005"/>
+                    <StringItem index="106" value="2006"/>
+                    <StringItem index="107" value="2007"/>
+                    <StringItem index="108" value="2008"/>
+                    <StringItem index="109" value="2009"/>
+                    <StringItem index="110" value="2010"/>
+                    <StringItem index="111" value="2011"/>
+                    <StringItem index="112" value="2012"/>
+                    <StringItem index="113" value="2013"/>
+                    <StringItem index="114" value="2014"/>
+                    <StringItem index="115" value="2015"/>
+                    <StringItem index="116" value="2016"/>
+                    <StringItem index="117" value="2017"/>
+                    <StringItem index="118" value="2018"/>
+                    <StringItem index="119" value="2019"/>
+                    <StringItem index="120" value="2020"/>
+                    <StringItem index="121" value="2021"/>
+                    <StringItem index="122" value="2022"/>
+                    <StringItem index="123" value="2023"/>
+                    <StringItem index="124" value="2024"/>
+                    <StringItem index="125" value="2025"/>
+                    <StringItem index="126" value="2026"/>
+                    <StringItem index="127" value="2027"/>
+                    <StringItem index="128" value="2028"/>
+                    <StringItem index="129" value="2029"/>
+                    <StringItem index="130" value="2030"/>
+                    <StringItem index="131" value="2031"/>
+                    <StringItem index="132" value="2032"/>
+                    <StringItem index="133" value="2033"/>
+                    <StringItem index="134" value="2034"/>
+                    <StringItem index="135" value="2035"/>
+                    <StringItem index="136" value="2036"/>
+                    <StringItem index="137" value="2037"/>
+                    <StringItem index="138" value="2038"/>
+                    <StringItem index="139" value="2039"/>
+                    <StringItem index="140" value="2040"/>
+                    <StringItem index="141" value="2041"/>
+                    <StringItem index="142" value="2042"/>
+                    <StringItem index="143" value="2043"/>
+                    <StringItem index="144" value="2044"/>
+                    <StringItem index="145" value="2045"/>
+                    <StringItem index="146" value="2046"/>
+                    <StringItem index="147" value="2047"/>
+                    <StringItem index="148" value="2048"/>
+                    <StringItem index="149" value="2049"/>
+                    <StringItem index="150" value="2050"/>
+                    <StringItem index="151" value="2051"/>
+                    <StringItem index="152" value="2052"/>
+                    <StringItem index="153" value="2053"/>
+                    <StringItem index="154" value="2054"/>
+                    <StringItem index="155" value="2055"/>
+                    <StringItem index="156" value="2056"/>
+                    <StringItem index="157" value="2057"/>
+                    <StringItem index="158" value="2058"/>
+                    <StringItem index="159" value="2059"/>
+                    <StringItem index="160" value="2060"/>
+                    <StringItem index="161" value="2061"/>
+                    <StringItem index="162" value="2062"/>
+                    <StringItem index="163" value="2063"/>
+                    <StringItem index="164" value="2064"/>
+                    <StringItem index="165" value="2065"/>
+                    <StringItem index="166" value="2066"/>
+                    <StringItem index="167" value="2067"/>
+                    <StringItem index="168" value="2068"/>
+                    <StringItem index="169" value="2069"/>
+                    <StringItem index="170" value="2070"/>
+                    <StringItem index="171" value="2071"/>
+                    <StringItem index="172" value="2072"/>
+                    <StringItem index="173" value="2073"/>
+                    <StringItem index="174" value="2074"/>
+                    <StringItem index="175" value="2075"/>
+                    <StringItem index="176" value="2076"/>
+                    <StringItem index="177" value="2077"/>
+                    <StringItem index="178" value="2078"/>
+                    <StringItem index="179" value="2079"/>
+                    <StringItem index="180" value="2080"/>
+                    <StringItem index="181" value="2081"/>
+                    <StringItem index="182" value="2082"/>
+                    <StringItem index="183" value="2083"/>
+                    <StringItem index="184" value="2084"/>
+                    <StringItem index="185" value="2085"/>
+                    <StringItem index="186" value="2086"/>
+                    <StringItem index="187" value="2087"/>
+                    <StringItem index="188" value="2088"/>
+                    <StringItem index="189" value="2089"/>
+                    <StringItem index="190" value="2090"/>
+                    <StringItem index="191" value="2091"/>
+                    <StringItem index="192" value="2092"/>
+                    <StringItem index="193" value="2093"/>
+                    <StringItem index="194" value="2094"/>
+                    <StringItem index="195" value="2095"/>
+                    <StringItem index="196" value="2096"/>
+                    <StringItem index="197" value="2097"/>
+                    <StringItem index="198" value="2098"/>
+                    <StringItem index="199" value="2099"/>
+                    <StringItem index="200" value="2100"/>
+                    <StringItem index="201" value=" "/>
+                  </StringArray>
+                </Property>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="dzien_wyd">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="32">
+                    <StringItem index="0" value="01"/>
+                    <StringItem index="1" value="02"/>
+                    <StringItem index="2" value="03"/>
+                    <StringItem index="3" value="04"/>
+                    <StringItem index="4" value="05"/>
+                    <StringItem index="5" value="06"/>
+                    <StringItem index="6" value="07"/>
+                    <StringItem index="7" value="08"/>
+                    <StringItem index="8" value="09"/>
+                    <StringItem index="9" value="10"/>
+                    <StringItem index="10" value="11"/>
+                    <StringItem index="11" value="12"/>
+                    <StringItem index="12" value="13"/>
+                    <StringItem index="13" value="14"/>
+                    <StringItem index="14" value="15"/>
+                    <StringItem index="15" value="16"/>
+                    <StringItem index="16" value="17"/>
+                    <StringItem index="17" value="18"/>
+                    <StringItem index="18" value="19"/>
+                    <StringItem index="19" value="20"/>
+                    <StringItem index="20" value="21"/>
+                    <StringItem index="21" value="22"/>
+                    <StringItem index="22" value="23"/>
+                    <StringItem index="23" value="24"/>
+                    <StringItem index="24" value="25"/>
+                    <StringItem index="25" value="26"/>
+                    <StringItem index="26" value="27"/>
+                    <StringItem index="27" value="28"/>
+                    <StringItem index="28" value="29"/>
+                    <StringItem index="29" value="30"/>
+                    <StringItem index="30" value="31"/>
+                    <StringItem index="31" value=" "/>
+                  </StringArray>
+                </Property>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="miesiac_wyd">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="12">
+                    <StringItem index="0" value="01"/>
+                    <StringItem index="1" value="02"/>
+                    <StringItem index="2" value="03"/>
+                    <StringItem index="3" value="04"/>
+                    <StringItem index="4" value="05"/>
+                    <StringItem index="5" value="06"/>
+                    <StringItem index="6" value="07"/>
+                    <StringItem index="7" value="08"/>
+                    <StringItem index="8" value="09"/>
+                    <StringItem index="9" value="10"/>
+                    <StringItem index="10" value="11"/>
+                    <StringItem index="11" value="12"/>
+                  </StringArray>
+                </Property>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Inny typ:"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="inny_typ">
+              <Properties>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JInternalFrame" name="fOpcje">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                <EmptyBorder/>
+              </Border>
+            </Property>
+            <Property name="title" type="java.lang.String" value="Nauczyciele"/>
+            <Property name="visible" type="boolean" value="true"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Nauczyciele">
+                <Property name="tabTitle" type="java.lang.String" value="Nauczyciele"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel15" min="-2" pref="38" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="dzien_dyz" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="aktualizuj_dyz" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
+                                      <Component id="Anuluj_N" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                                      <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="godziny_dyz_od_h" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="godziny_dyz_od_m" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="godziny_dyz_do_h" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="godziny_dyz_do_m" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Component id="lista_dyz" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="First_dyz" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="Previous_dyz" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="Next_dyz" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="Last_dyz" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="sala" min="-2" pref="49" max="-2" attributes="0"/>
+                      <EmptySpace pref="200" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="165" max="-2" attributes="0"/>
+                              <Component id="Delete" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="258" max="-2" attributes="0"/>
+                                      <Component id="jLabel9" min="-2" pref="89" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="imie" min="-2" pref="151" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="BoxTak" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                                              <Component id="BoxNie" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="nazwisko" min="-2" pref="145" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                      <Component id="jLabel14" min="-2" pref="104" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="Zapisz_N" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="bAktualizujNauczycieli" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lista_n" min="-2" pref="186" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel9" min="-2" pref="24" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="imie" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="nazwisko" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Zapisz_N" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lista_n" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel14" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="bAktualizujNauczycieli" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="BoxTak" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="BoxNie" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel15" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="sala" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="godziny_dyz_od_h" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="godziny_dyz_od_m" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="dzien_dyz" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="godziny_dyz_do_m" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="godziny_dyz_do_h" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Anuluj_N" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="aktualizuj_dyz" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="First_dyz" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Previous_dyz" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Next_dyz" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Last_dyz" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lista_dyz" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="Delete" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="135" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel9">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="NAUCZYCIELE"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel11">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Imie"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel12">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nazwisko"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel13">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Sala"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="imie">
+            </Component>
+            <Component class="javax.swing.JTextField" name="nazwisko">
+            </Component>
+            <Component class="javax.swing.JTextField" name="sala">
+              <Properties>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel14">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Wprowadzic dyzur?"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel15">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Dzie&#x144;:"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel16">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="godzina od :"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel17">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="godzina do:"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="Zapisz_N">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Zapisz"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Zapisz_NActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="Anuluj_N">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Anuluj"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Anuluj_NActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="First_dyz">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="|&lt; Poprzedni"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="First_dyzActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="Previous_dyz">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&lt;&lt; Poprzedni"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Previous_dyzActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="Next_dyz">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nastepny &gt;&gt;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Next_dyzActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="Last_dyz">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ostatni&gt;|"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Last_dyzActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="lista_dyz">
+            </Component>
+            <Component class="javax.swing.JButton" name="Delete">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Usun"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="BoxTak">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Tak"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BoxTakActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="BoxNie">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
+                <Property name="selected" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" value="Nie"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BoxNieActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="lista_n">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lista_nActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="bAktualizujNauczycieli">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Aktualizuj List&#x119;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAktualizujNauczycieliActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="aktualizuj_dyz">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Dodaj"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aktualizuj_dyzActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="godziny_dyz_od_h">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="24">
+                    <StringItem index="0" value="00"/>
+                    <StringItem index="1" value="01"/>
+                    <StringItem index="2" value="02"/>
+                    <StringItem index="3" value="03"/>
+                    <StringItem index="4" value="04"/>
+                    <StringItem index="5" value="05"/>
+                    <StringItem index="6" value="06"/>
+                    <StringItem index="7" value="07"/>
+                    <StringItem index="8" value="08"/>
+                    <StringItem index="9" value="09"/>
+                    <StringItem index="10" value="10"/>
+                    <StringItem index="11" value="11"/>
+                    <StringItem index="12" value="12"/>
+                    <StringItem index="13" value="13"/>
+                    <StringItem index="14" value="14"/>
+                    <StringItem index="15" value="15"/>
+                    <StringItem index="16" value="16"/>
+                    <StringItem index="17" value="17"/>
+                    <StringItem index="18" value="18"/>
+                    <StringItem index="19" value="19"/>
+                    <StringItem index="20" value="20"/>
+                    <StringItem index="21" value="21"/>
+                    <StringItem index="22" value="22"/>
+                    <StringItem index="23" value="23"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="godziny_dyz_od_m">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="60">
+                    <StringItem index="0" value="00"/>
+                    <StringItem index="1" value="01"/>
+                    <StringItem index="2" value="02"/>
+                    <StringItem index="3" value="03"/>
+                    <StringItem index="4" value="04"/>
+                    <StringItem index="5" value="05"/>
+                    <StringItem index="6" value="06"/>
+                    <StringItem index="7" value="07"/>
+                    <StringItem index="8" value="08"/>
+                    <StringItem index="9" value="09"/>
+                    <StringItem index="10" value="10"/>
+                    <StringItem index="11" value="11"/>
+                    <StringItem index="12" value="12"/>
+                    <StringItem index="13" value="13"/>
+                    <StringItem index="14" value="14"/>
+                    <StringItem index="15" value="15"/>
+                    <StringItem index="16" value="16"/>
+                    <StringItem index="17" value="17"/>
+                    <StringItem index="18" value="18"/>
+                    <StringItem index="19" value="19"/>
+                    <StringItem index="20" value="20"/>
+                    <StringItem index="21" value="21"/>
+                    <StringItem index="22" value="22"/>
+                    <StringItem index="23" value="23"/>
+                    <StringItem index="24" value="24"/>
+                    <StringItem index="25" value="25"/>
+                    <StringItem index="26" value="26"/>
+                    <StringItem index="27" value="27"/>
+                    <StringItem index="28" value="28"/>
+                    <StringItem index="29" value="29"/>
+                    <StringItem index="30" value="30"/>
+                    <StringItem index="31" value="31"/>
+                    <StringItem index="32" value="32"/>
+                    <StringItem index="33" value="33"/>
+                    <StringItem index="34" value="34"/>
+                    <StringItem index="35" value="35"/>
+                    <StringItem index="36" value="36"/>
+                    <StringItem index="37" value="37"/>
+                    <StringItem index="38" value="38"/>
+                    <StringItem index="39" value="39"/>
+                    <StringItem index="40" value="40"/>
+                    <StringItem index="41" value="41"/>
+                    <StringItem index="42" value="42"/>
+                    <StringItem index="43" value="43"/>
+                    <StringItem index="44" value="44"/>
+                    <StringItem index="45" value="45"/>
+                    <StringItem index="46" value="46"/>
+                    <StringItem index="47" value="47"/>
+                    <StringItem index="48" value="48"/>
+                    <StringItem index="49" value="49"/>
+                    <StringItem index="50" value="50"/>
+                    <StringItem index="51" value="51"/>
+                    <StringItem index="52" value="52"/>
+                    <StringItem index="53" value="53"/>
+                    <StringItem index="54" value="54"/>
+                    <StringItem index="55" value="55"/>
+                    <StringItem index="56" value="56"/>
+                    <StringItem index="57" value="57"/>
+                    <StringItem index="58" value="58"/>
+                    <StringItem index="59" value="59"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="godziny_dyz_do_m">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="60">
+                    <StringItem index="0" value="00"/>
+                    <StringItem index="1" value="01"/>
+                    <StringItem index="2" value="02"/>
+                    <StringItem index="3" value="03"/>
+                    <StringItem index="4" value="04"/>
+                    <StringItem index="5" value="05"/>
+                    <StringItem index="6" value="06"/>
+                    <StringItem index="7" value="07"/>
+                    <StringItem index="8" value="08"/>
+                    <StringItem index="9" value="09"/>
+                    <StringItem index="10" value="10"/>
+                    <StringItem index="11" value="11"/>
+                    <StringItem index="12" value="12"/>
+                    <StringItem index="13" value="13"/>
+                    <StringItem index="14" value="14"/>
+                    <StringItem index="15" value="15"/>
+                    <StringItem index="16" value="16"/>
+                    <StringItem index="17" value="17"/>
+                    <StringItem index="18" value="18"/>
+                    <StringItem index="19" value="19"/>
+                    <StringItem index="20" value="20"/>
+                    <StringItem index="21" value="21"/>
+                    <StringItem index="22" value="22"/>
+                    <StringItem index="23" value="23"/>
+                    <StringItem index="24" value="24"/>
+                    <StringItem index="25" value="25"/>
+                    <StringItem index="26" value="26"/>
+                    <StringItem index="27" value="27"/>
+                    <StringItem index="28" value="28"/>
+                    <StringItem index="29" value="29"/>
+                    <StringItem index="30" value="30"/>
+                    <StringItem index="31" value="31"/>
+                    <StringItem index="32" value="32"/>
+                    <StringItem index="33" value="33"/>
+                    <StringItem index="34" value="34"/>
+                    <StringItem index="35" value="35"/>
+                    <StringItem index="36" value="36"/>
+                    <StringItem index="37" value="37"/>
+                    <StringItem index="38" value="38"/>
+                    <StringItem index="39" value="39"/>
+                    <StringItem index="40" value="40"/>
+                    <StringItem index="41" value="41"/>
+                    <StringItem index="42" value="42"/>
+                    <StringItem index="43" value="43"/>
+                    <StringItem index="44" value="44"/>
+                    <StringItem index="45" value="45"/>
+                    <StringItem index="46" value="46"/>
+                    <StringItem index="47" value="47"/>
+                    <StringItem index="48" value="48"/>
+                    <StringItem index="49" value="49"/>
+                    <StringItem index="50" value="50"/>
+                    <StringItem index="51" value="51"/>
+                    <StringItem index="52" value="52"/>
+                    <StringItem index="53" value="53"/>
+                    <StringItem index="54" value="54"/>
+                    <StringItem index="55" value="55"/>
+                    <StringItem index="56" value="56"/>
+                    <StringItem index="57" value="57"/>
+                    <StringItem index="58" value="58"/>
+                    <StringItem index="59" value="59"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="godziny_dyz_do_h">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="24">
+                    <StringItem index="0" value="00"/>
+                    <StringItem index="1" value="01"/>
+                    <StringItem index="2" value="02"/>
+                    <StringItem index="3" value="03"/>
+                    <StringItem index="4" value="04"/>
+                    <StringItem index="5" value="05"/>
+                    <StringItem index="6" value="06"/>
+                    <StringItem index="7" value="07"/>
+                    <StringItem index="8" value="08"/>
+                    <StringItem index="9" value="09"/>
+                    <StringItem index="10" value="10"/>
+                    <StringItem index="11" value="11"/>
+                    <StringItem index="12" value="12"/>
+                    <StringItem index="13" value="13"/>
+                    <StringItem index="14" value="14"/>
+                    <StringItem index="15" value="15"/>
+                    <StringItem index="16" value="16"/>
+                    <StringItem index="17" value="17"/>
+                    <StringItem index="18" value="18"/>
+                    <StringItem index="19" value="19"/>
+                    <StringItem index="20" value="20"/>
+                    <StringItem index="21" value="21"/>
+                    <StringItem index="22" value="22"/>
+                    <StringItem index="23" value="23"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="dzien_dyz">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="7">
+                    <StringItem index="0" value="Poniedzia&#x142;ek"/>
+                    <StringItem index="1" value="Wtorek"/>
+                    <StringItem index="2" value="&#x15a;roda"/>
+                    <StringItem index="3" value="Czwartek"/>
+                    <StringItem index="4" value="Pi&#x105;tek"/>
+                    <StringItem index="5" value="Sobota"/>
+                    <StringItem index="6" value="Niedziela"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>
