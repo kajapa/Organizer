@@ -4,32 +4,24 @@
  * and open the template in the editor.
  */
 package organizer;
- 
-import java.awt.Choice;
+
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.sql.Connection;
 import java.sql.Date;
-    import java.sql.DriverManager;
-    import java.sql.SQLException;
-    import java.sql.Statement;
-    import java.sql.ResultSet;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
 import java.sql.Time;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
 import javax.swing.JOptionPane;
-import javax.swing.JTabbedPane;
-import javax.swing.border.EtchedBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.table.TableColumnModel;
 
-//import organizer.Przedmiot;
+import organizer.TableFromDatabase;
 
 /**
  *
@@ -38,18 +30,25 @@ import javax.swing.table.TableColumnModel;
 public final class GUI extends javax.swing.JFrame {
     
         Connection con;
-        Statement stmt_p,stmt_w,stmt_n,stmt_d,stmt_s,stmt_g, stmt_t, stmt_pl, stmt_pom1;
-        ResultSet rs_p, rs_w,rs_n, rs_d,rs_s,rs_g,rs_t, rs_pl, rs_pom1;
+        Statement stmt_p,stmt_w,stmt_n,stmt_d,stmt_s,stmt_g, stmt_t, stmt_pl, stmt_pom1, stmt_z;
+        ResultSet rs_p, rs_w,rs_n, rs_d,rs_s,rs_g,rs_t, rs_pl, rs_pom1, rs_z;
         int current_row = 0;
        
     /**
      * Creates new form GUI
      */
     public GUI() {
-        System.out.println(System.getProperty("java.home"));
+        
         initComponents();
+        TableFromDatabase plan1 = new TableFromDatabase(sPlan1,0);
+        TableFromDatabase plan2 = new TableFromDatabase(sPlan2,1);
+        TableFromDatabase plan3 = new TableFromDatabase(sPlan3,2);
+        TableFromDatabase plan4 = new TableFromDatabase(sPlan4,3);
+        TableFromDatabase plan5 = new TableFromDatabase(sPlan5,4);
+        
         polacz();
         update();
+        
     }
     
     public void polacz() {
@@ -70,8 +69,13 @@ public final class GUI extends javax.swing.JFrame {
         stmt_t = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE );
         stmt_pl = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE );
         stmt_pom1 = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE );
+        stmt_z = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE );
         String sql = "SELECT * FROM PRZEDMIOTY";
-            
+        String sql_pl = "select p.NAZWA as NAZWA , g.GODZINA_OD, g.GODZINA_DO, t.NAZWA as Typ, n.IMIE, n.NAZWISKO, z.SALA, z.DZIEN\n" +
+                        "FROM ZAJĘCIA z JOIN PRZEDMIOTY p Using(ID_PRZEDMIOTU)\n" +
+                        "JOIN GODZINY g USING(ID_GODZINY)\n" +
+                        "JOIN TYPY_ZAJEC t USING(ID_TYPU)\n" +
+                        "JOIN NAUCZYCIELE n USING (ID_NAUCZYCIELA)";
         //rs = stmt.executeQuery(sql);
         rs_p = stmt_p.executeQuery("SELECT * FROM PRZEDMIOTY");
         rs_w = stmt_w.executeQuery("SELECT * FROM WYDARZENIA");
@@ -80,31 +84,16 @@ public final class GUI extends javax.swing.JFrame {
         rs_s = stmt_s.executeQuery("SELECT * FROM SEMESTR");
         rs_g = stmt_g.executeQuery("SELECT * FROM GODZINY");
         rs_t = stmt_t.executeQuery("SELECT * FROM TYPY_ZAJEC");
-        rs_pl = stmt_pl.executeQuery("SELECT * FROM SEMESTR");
+        rs_pl = stmt_pl.executeQuery(sql_pl);
         rs_pom1 = stmt_pom1.executeQuery("SELECT * FROM NAUCZYCIELE");
-            while(rs_p.next())
-            {
-            int id_kol = rs_p.getInt("id_przedmiotu");
-            String id_p = Integer.toString(id_kol);
-            String nazwa_p = rs_p.getString("nazwa");
-            tf_nazwa.setText(nazwa_p);
-            }
-            
-            
-            
-            while(rs_w.next())
-            {
-            String typ_w = rs_w.getString("typ_wyd");
-            String miejsce_w = rs_w.getString("miejsce_wyd");
-            Date data_w = rs_w.getDate("data_wyd");
-            Time czas = rs_w.getTime("czas_wyd");
-            }
-            
-            while(rs_n.next())
-            {
-            String imie_n = rs_n.getString("imie");
-            String nazwisko_n  = rs_n.getString("nazwisko");
-            }
+        rs_z  = stmt_z.executeQuery("SELECT * FROM ZAJĘCIA");
+        
+        {
+        int i = 0;
+        while(rs_pl.next()) i++;
+        lZajecia2.setText("/"+Integer.toString(i));
+        while(rs_pl.previous());
+        }
             
                 }
             catch(SQLException err){System.out.println(err.getMessage());}
@@ -129,32 +118,41 @@ public final class GUI extends javax.swing.JFrame {
         tPlan = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         fPrzedmioty = new javax.swing.JInternalFrame();
-        tf_nazwa = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        l1 = new javax.swing.JLabel();
         bNext = new javax.swing.JButton();
         bPrev = new javax.swing.JButton();
-        bFirst = new javax.swing.JButton();
-        bLast = new javax.swing.JButton();
-        bSave = new javax.swing.JButton();
-        bAdd = new javax.swing.JButton();
-        bRemove = new javax.swing.JButton();
-        bSaveNew = new javax.swing.JButton();
-        bCancelNew = new javax.swing.JButton();
-        jLabel23 = new javax.swing.JLabel();
-        lista_n2 = new javax.swing.JComboBox();
-        jLabel24 = new javax.swing.JLabel();
-        tf_prz_sala = new javax.swing.JTextField();
-        jLabel25 = new javax.swing.JLabel();
+        l2 = new javax.swing.JLabel();
+        cbNauczyciele = new javax.swing.JComboBox();
+        l6 = new javax.swing.JLabel();
+        tfSala = new javax.swing.JTextField();
+        l4 = new javax.swing.JLabel();
         dzien_plan1 = new javax.swing.JComboBox();
-        jLabel26 = new javax.swing.JLabel();
-        lista_godz1 = new javax.swing.JComboBox();
-        jLabel27 = new javax.swing.JLabel();
-        lista_typy1 = new javax.swing.JComboBox();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jLabel28 = new javax.swing.JLabel();
-        lista_plan1 = new javax.swing.JComboBox();
-        jLabel29 = new javax.swing.JLabel();
-        prz_info = new javax.swing.JTextField();
+        l5 = new javax.swing.JLabel();
+        cbGodziny = new javax.swing.JComboBox();
+        l3 = new javax.swing.JLabel();
+        cbTyp = new javax.swing.JComboBox();
+        l7 = new javax.swing.JLabel();
+        cbSemestry = new javax.swing.JComboBox();
+        cbPrzedmioty = new javax.swing.JComboBox();
+        bNowyPrzedmiot = new javax.swing.JButton();
+        bZapiszPrzedmiot = new javax.swing.JButton();
+        bAnulujPrzedmiot = new javax.swing.JButton();
+        tfNazwaPrzedmiotu = new javax.swing.JTextField();
+        jLabel30 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        cbPrzedmioty2 = new javax.swing.JComboBox();
+        bDodajZajecia = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        bZapiszZajecia = new javax.swing.JButton();
+        bAnulujZajecia = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tfZajecia = new javax.swing.JTextArea();
+        jSeparator2 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
+        lZajecia1 = new javax.swing.JLabel();
+        lZajecia2 = new javax.swing.JLabel();
         fWydarzenia = new javax.swing.JInternalFrame();
         jLabel3 = new javax.swing.JLabel();
         typ_wydarzen = new javax.swing.JComboBox();
@@ -179,22 +177,6 @@ public final class GUI extends javax.swing.JFrame {
         miesiac_wyd = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
         inny_typ = new javax.swing.JTextField();
-        fSemstr = new javax.swing.JInternalFrame();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        semestr = new javax.swing.JComboBox();
-        jLabel18 = new javax.swing.JLabel();
-        rok_s1 = new javax.swing.JComboBox();
-        jLabel19 = new javax.swing.JLabel();
-        rok_s2 = new javax.swing.JComboBox();
-        Zapisz_sem = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        przedmioty_plan = new javax.swing.JComboBox();
-        godziny_plan = new javax.swing.JComboBox();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        sala_plan = new javax.swing.JComboBox();
         fNauczyciele = new javax.swing.JInternalFrame();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -224,8 +206,27 @@ public final class GUI extends javax.swing.JFrame {
         godziny_dyz_do_m = new javax.swing.JComboBox();
         godziny_dyz_do_h = new javax.swing.JComboBox();
         dzien_dyz = new javax.swing.JComboBox();
+        fSemstr = new javax.swing.JInternalFrame();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        semestr = new javax.swing.JComboBox();
+        jLabel18 = new javax.swing.JLabel();
+        rok_s1 = new javax.swing.JComboBox();
+        jLabel19 = new javax.swing.JLabel();
+        rok_s2 = new javax.swing.JComboBox();
+        Zapisz_sem = new javax.swing.JButton();
+        fTest = new javax.swing.JInternalFrame();
+        sPlan2 = new javax.swing.JScrollPane();
+        sPlan3 = new javax.swing.JScrollPane();
+        sPlan4 = new javax.swing.JScrollPane();
+        sPlan1 = new javax.swing.JScrollPane();
+        sPlan5 = new javax.swing.JScrollPane();
+        sPlan0 = new javax.swing.JScrollPane();
+        tGodz = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        fMain.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
 
         fStart.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         fStart.setTitle("Start");
@@ -236,19 +237,19 @@ public final class GUI extends javax.swing.JFrame {
         fStart.getContentPane().setLayout(fStartLayout);
         fStartLayout.setHorizontalGroup(
             fStartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 788, Short.MAX_VALUE)
+            .addGap(0, 870, Short.MAX_VALUE)
         );
         fStartLayout.setVerticalGroup(
             fStartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 444, Short.MAX_VALUE)
+            .addGap(0, 437, Short.MAX_VALUE)
         );
 
         fMain.addTab("Start", fStart);
 
+        fPlan.setBorder(null);
         fPlan.setVisible(true);
 
         tPlan.setBackground(new java.awt.Color(255, 255, 204));
-        tPlan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tPlan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"08.00-10.00", null, null, null, null, null, null, null},
@@ -304,7 +305,7 @@ public final class GUI extends javax.swing.JFrame {
         fPlan.getContentPane().setLayout(fPlanLayout);
         fPlanLayout.setHorizontalGroup(
             fPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 774, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 872, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fPlanLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
@@ -314,7 +315,7 @@ public final class GUI extends javax.swing.JFrame {
             fPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fPlanLayout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addContainerGap())
         );
@@ -322,16 +323,11 @@ public final class GUI extends javax.swing.JFrame {
         fMain.addTab("Plan Zajęć", fPlan);
 
         fPrzedmioty.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        fPrzedmioty.setTitle("Przedmioty");
+        fPrzedmioty.setTitle("Przedmioty i zajęcia");
         fPrzedmioty.setVisible(true);
 
-        tf_nazwa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_nazwaActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Nazwa przedmiotu:");
+        l1.setText("Przedmiot:");
+        l1.setEnabled(false);
 
         bNext.setText("Następny >>");
         bNext.addActionListener(new java.awt.event.ActionListener() {
@@ -347,104 +343,163 @@ public final class GUI extends javax.swing.JFrame {
             }
         });
 
-        bFirst.setText("|< Pierwszy");
-        bFirst.addActionListener(new java.awt.event.ActionListener() {
+        l2.setText("Nauczyciel: ");
+        l2.setEnabled(false);
+
+        cbNauczyciele.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kliknij \"Aktualizuj\"" }));
+        cbNauczyciele.setEnabled(false);
+        cbNauczyciele.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bFirstActionPerformed(evt);
+                cbNauczycieleActionPerformed(evt);
             }
         });
 
-        bLast.setText("Ostatni >|");
-        bLast.addActionListener(new java.awt.event.ActionListener() {
+        l6.setText("Sala:");
+        l6.setEnabled(false);
+
+        tfSala.setEnabled(false);
+        tfSala.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bLastActionPerformed(evt);
+                tfSalaActionPerformed(evt);
             }
         });
 
-        bSave.setText("Zapisz");
-        bSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bSaveActionPerformed(evt);
-            }
-        });
-
-        bAdd.setText("Dodaj");
-        bAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bAddActionPerformed(evt);
-            }
-        });
-
-        bRemove.setText("Usuń");
-        bRemove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bRemoveActionPerformed(evt);
-            }
-        });
-
-        bSaveNew.setText("Zapisz nowy rekord");
-        bSaveNew.setEnabled(false);
-        bSaveNew.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bSaveNewActionPerformed(evt);
-            }
-        });
-
-        bCancelNew.setText("Anuluj nowy rekord");
-        bCancelNew.setEnabled(false);
-        bCancelNew.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bCancelNewActionPerformed(evt);
-            }
-        });
-
-        jLabel23.setText("Nauczyciel: ");
-
-        lista_n2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kliknij \"Aktualizuj\"" }));
-        lista_n2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lista_n2ActionPerformed(evt);
-            }
-        });
-
-        jLabel24.setText("Sala:");
-
-        tf_prz_sala.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_prz_salaActionPerformed(evt);
-            }
-        });
-
-        jLabel25.setText("Dzień:");
+        l4.setText("Dzień:");
+        l4.setEnabled(false);
 
         dzien_plan1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela" }));
+        dzien_plan1.setEnabled(false);
 
-        jLabel26.setText("Godzina:");
+        l5.setText("Godzina:");
+        l5.setEnabled(false);
 
-        lista_godz1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kliknij \"Aktualizuj\"" }));
-        lista_godz1.addActionListener(new java.awt.event.ActionListener() {
+        cbGodziny.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kliknij \"Aktualizuj\"" }));
+        cbGodziny.setEnabled(false);
+        cbGodziny.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lista_godz1ActionPerformed(evt);
+                cbGodzinyActionPerformed(evt);
             }
         });
 
-        jLabel27.setText("Typ:");
+        l3.setText("Typ:");
+        l3.setEnabled(false);
 
-        lista_typy1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kliknij \"Aktualizuj\"" }));
+        cbTyp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kliknij \"Aktualizuj\"" }));
+        cbTyp.setEnabled(false);
 
-        jToggleButton1.setText("Edytuj Typy");
+        l7.setText("Semestr:");
+        l7.setEnabled(false);
 
-        jLabel28.setText("Semestr");
+        cbSemestry.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kliknij \"Aktualizuj\"" }));
+        cbSemestry.setEnabled(false);
 
-        lista_plan1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kliknij \"Aktualizuj\"" }));
-
-        jLabel29.setText("Informacje:");
-
-        prz_info.addActionListener(new java.awt.event.ActionListener() {
+        cbPrzedmioty.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Przedmioty" }));
+        cbPrzedmioty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prz_infoActionPerformed(evt);
+                cbPrzedmiotyActionPerformed(evt);
             }
         });
+
+        bNowyPrzedmiot.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bNowyPrzedmiot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/organizer/icon_add_small.png"))); // NOI18N
+        bNowyPrzedmiot.setText("Nowy");
+        bNowyPrzedmiot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bNowyPrzedmiotActionPerformed(evt);
+            }
+        });
+
+        bZapiszPrzedmiot.setBackground(new java.awt.Color(255, 255, 255));
+        bZapiszPrzedmiot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/organizer/icon_yes_small.png"))); // NOI18N
+        bZapiszPrzedmiot.setText("Zapisz");
+        bZapiszPrzedmiot.setEnabled(false);
+        bZapiszPrzedmiot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bZapiszPrzedmiotActionPerformed(evt);
+            }
+        });
+
+        bAnulujPrzedmiot.setBackground(new java.awt.Color(255, 255, 255));
+        bAnulujPrzedmiot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/organizer/icon_no_small.png"))); // NOI18N
+        bAnulujPrzedmiot.setText("Anuluj");
+        bAnulujPrzedmiot.setEnabled(false);
+        bAnulujPrzedmiot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAnulujPrzedmiotActionPerformed(evt);
+            }
+        });
+
+        tfNazwaPrzedmiotu.setEnabled(false);
+        tfNazwaPrzedmiotu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfNazwaPrzedmiotuActionPerformed(evt);
+            }
+        });
+
+        jLabel30.setText("Lista przedmiotów:");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Przedmioty");
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel20.setText("Nowe zajęcia");
+
+        cbPrzedmioty2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Przedmioty" }));
+        cbPrzedmioty2.setEnabled(false);
+
+        bDodajZajecia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bDodajZajecia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/organizer/icon_add_small.png"))); // NOI18N
+        bDodajZajecia.setText("Dodaj");
+        bDodajZajecia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bDodajZajeciaActionPerformed(evt);
+            }
+        });
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel21.setText("Zajęcia:");
+
+        bZapiszZajecia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bZapiszZajecia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/organizer/icon_yes_small.png"))); // NOI18N
+        bZapiszZajecia.setText("Zapisz");
+        bZapiszZajecia.setEnabled(false);
+        bZapiszZajecia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bZapiszZajeciaActionPerformed(evt);
+            }
+        });
+
+        bAnulujZajecia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bAnulujZajecia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/organizer/icon_no_small.png"))); // NOI18N
+        bAnulujZajecia.setText("Anuluj");
+        bAnulujZajecia.setEnabled(false);
+        bAnulujZajecia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAnulujZajeciaActionPerformed(evt);
+            }
+        });
+
+        tfZajecia.setColumns(20);
+        tfZajecia.setRows(5);
+        jScrollPane2.setViewportView(tfZajecia);
+        Font font = tfZajecia.getFont();
+        float size = font.getSize() + 3.0f;
+        tfZajecia.setFont(font.deriveFont(size));
+
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/organizer/icon_no_small.png"))); // NOI18N
+        jButton1.setText("Usuń");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        lZajecia1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lZajecia1.setText("0");
+
+        lZajecia2.setText("/10");
 
         javax.swing.GroupLayout fPrzedmiotyLayout = new javax.swing.GroupLayout(fPrzedmioty.getContentPane());
         fPrzedmioty.getContentPane().setLayout(fPrzedmiotyLayout);
@@ -453,121 +508,155 @@ public final class GUI extends javax.swing.JFrame {
             .addGroup(fPrzedmiotyLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1)
                     .addGroup(fPrzedmiotyLayout.createSequentialGroup()
-                        .addComponent(bFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(fPrzedmiotyLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(bSaveNew)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(bCancelNew)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(jLabel30)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbPrzedmioty, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(fPrzedmiotyLayout.createSequentialGroup()
-                                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(fPrzedmiotyLayout.createSequentialGroup()
-                                        .addComponent(bPrev)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(bNext))
-                                    .addGroup(fPrzedmiotyLayout.createSequentialGroup()
-                                        .addComponent(bRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(bAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(bNowyPrzedmiot)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfNazwaPrzedmiotu, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(fPrzedmiotyLayout.createSequentialGroup()
+                                .addComponent(bZapiszPrzedmiot)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bAnulujPrzedmiot))
+                            .addComponent(jLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(fPrzedmiotyLayout.createSequentialGroup()
+                        .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(fPrzedmiotyLayout.createSequentialGroup()
+                                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(l1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(l2)
+                                    .addComponent(jLabel20))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(fPrzedmiotyLayout.createSequentialGroup()
-                                        .addComponent(bSave, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                                        .addGap(369, 369, 369))
-                                    .addGroup(fPrzedmiotyLayout.createSequentialGroup()
-                                        .addComponent(bLast, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                    .addGroup(fPrzedmiotyLayout.createSequentialGroup()
-                        .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(bDodajZajecia)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(bZapiszZajecia)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(bAnulujZajecia))
+                                    .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(cbNauczyciele, 0, 417, Short.MAX_VALUE)
+                                        .addComponent(cbTyp, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cbPrzedmioty2, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addGroup(fPrzedmiotyLayout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(fPrzedmiotyLayout.createSequentialGroup()
-                                        .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel23)
-                                            .addComponent(jLabel24)
-                                            .addComponent(jLabel25)
-                                            .addComponent(jLabel26)
-                                            .addComponent(jLabel27)
-                                            .addComponent(jLabel28))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(lista_n2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(tf_prz_sala, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(fPrzedmiotyLayout.createSequentialGroup()
-                                                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addComponent(lista_plan1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(lista_typy1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(dzien_plan1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(lista_godz1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jToggleButton1))))
-                                    .addGroup(fPrzedmiotyLayout.createSequentialGroup()
-                                        .addComponent(jLabel29)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(prz_info, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(32, 32, 32)
+                                .addComponent(l3))
                             .addGroup(fPrzedmiotyLayout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tf_nazwa, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(8, 8, 8)
+                                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(l4)
+                                    .addComponent(l5)
+                                    .addComponent(l6)
+                                    .addComponent(l7))
+                                .addGap(55, 55, 55)
+                                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cbGodziny, 0, 417, Short.MAX_VALUE)
+                                    .addComponent(dzien_plan1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbSemestry, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tfSala))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2)
+                            .addGroup(fPrzedmiotyLayout.createSequentialGroup()
+                                .addComponent(bPrev)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bNext)
+                                .addGap(7, 7, 7))
+                            .addGroup(fPrzedmiotyLayout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lZajecia1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lZajecia2)))))
+                .addContainerGap())
         );
         fPrzedmiotyLayout.setVerticalGroup(
             fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fPrzedmiotyLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(2, 2, 2)
                 .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_nazwa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel30)
+                    .addComponent(cbPrzedmioty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel29)
-                    .addComponent(prz_info, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfNazwaPrzedmiotu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bNowyPrzedmiot))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23)
-                    .addComponent(lista_n2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bZapiszPrzedmiot)
+                    .addComponent(bAnulujPrzedmiot))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel24)
-                    .addComponent(tf_prz_sala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel25)
-                    .addComponent(dzien_plan1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel26)
-                    .addComponent(lista_godz1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel27)
-                    .addComponent(lista_typy1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel28)
-                    .addComponent(lista_plan1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
-                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bFirst)
-                    .addComponent(bPrev)
-                    .addComponent(bNext)
-                    .addComponent(bLast))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bSave)
-                    .addComponent(bRemove)
-                    .addComponent(bAdd))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bSaveNew)
-                    .addComponent(bCancelNew))
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(fPrzedmiotyLayout.createSequentialGroup()
+                        .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(fPrzedmiotyLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel21)
+                                    .addComponent(lZajecia1)
+                                    .addComponent(lZajecia2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(fPrzedmiotyLayout.createSequentialGroup()
+                                        .addGap(137, 137, 137)
+                                        .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(bPrev)
+                                            .addComponent(jButton1)
+                                            .addComponent(bNext)))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(fPrzedmiotyLayout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel20)
+                                    .addComponent(bDodajZajecia)
+                                    .addComponent(bZapiszZajecia)
+                                    .addComponent(bAnulujZajecia))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(l1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbPrzedmioty2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(l2)
+                                    .addComponent(cbNauczyciele, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(l3)
+                                    .addComponent(cbTyp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(dzien_plan1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(l4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(l5)
+                                    .addGroup(fPrzedmiotyLayout.createSequentialGroup()
+                                        .addComponent(cbGodziny, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(tfSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(l6))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cbSemestry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(l7))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fPrzedmiotyLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -690,61 +779,62 @@ public final class GUI extends javax.swing.JFrame {
             .addGroup(fWydarzeniaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(fWydarzeniaLayout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(fWydarzeniaLayout.createSequentialGroup()
-                                    .addComponent(zapisz_wyd)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(anuluj_wyd))
-                                .addComponent(dodaj_wyd)))
-                        .addGroup(fWydarzeniaLayout.createSequentialGroup()
-                            .addComponent(pier_wyd)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(pop_wyd)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(nast_wyd)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(ost_wyd))
-                        .addComponent(lista_wyd))
                     .addGroup(fWydarzeniaLayout.createSequentialGroup()
-                        .addComponent(usun_wyd)
+                        .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(zmien_wyd))
-                    .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(fWydarzeniaLayout.createSequentialGroup()
-                            .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(miejsce_wydarzenia)
+                        .addGap(43, 43, 43))
+                    .addGroup(fWydarzeniaLayout.createSequentialGroup()
+                        .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(fWydarzeniaLayout.createSequentialGroup()
-                                    .addComponent(dzien_wyd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(miesiac_wyd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(rok_wyd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(10, 10, 10)
+                                    .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(fWydarzeniaLayout.createSequentialGroup()
+                                            .addComponent(zapisz_wyd)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(anuluj_wyd))
+                                        .addComponent(dodaj_wyd)))
                                 .addGroup(fWydarzeniaLayout.createSequentialGroup()
-                                    .addComponent(typ_wydarzen, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel8)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(inny_typ, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(fWydarzeniaLayout.createSequentialGroup()
-                                    .addComponent(jLabel5)
+                                    .addComponent(pier_wyd)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(godziny_wyd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(pop_wyd)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(minuty_wyd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(110, 110, 110))
-                        .addGroup(fWydarzeniaLayout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(miejsce_wydarzenia)
-                            .addGap(43, 43, 43))))
-                .addContainerGap(251, Short.MAX_VALUE))
+                                    .addComponent(nast_wyd)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(ost_wyd))
+                                .addComponent(lista_wyd))
+                            .addGroup(fWydarzeniaLayout.createSequentialGroup()
+                                .addComponent(usun_wyd)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(zmien_wyd))
+                            .addGroup(fWydarzeniaLayout.createSequentialGroup()
+                                .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(fWydarzeniaLayout.createSequentialGroup()
+                                        .addComponent(dzien_wyd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(miesiac_wyd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rok_wyd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(fWydarzeniaLayout.createSequentialGroup()
+                                        .addComponent(typ_wydarzen, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel8)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(inny_typ, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(fWydarzeniaLayout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(godziny_wyd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(minuty_wyd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         fWydarzeniaLayout.setVerticalGroup(
             fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -787,133 +877,10 @@ public final class GUI extends javax.swing.JFrame {
                 .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usun_wyd)
                     .addComponent(zmien_wyd))
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
 
         fMain.addTab("Wydarzenia", fWydarzenia);
-
-        fSemstr.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        fSemstr.setTitle("Plan zajęć");
-        fSemstr.setVisible(true);
-
-        jLabel7.setText("Zarządzanie Semestrem");
-
-        jLabel10.setText("Semestr");
-
-        semestr.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "zimowy", "letni" }));
-
-        jLabel18.setText("Rok");
-
-        rok_s1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1900", "1901", "1902", "1903", "1904", "1905", "1906", "1907", "1908", "1909", "1910", "1911", "1912", "1913", "1914", "1915", "1916", "1917", "1918", "1919", "1920", "1921", "1922", "1923", "1924", "1925", "1926", "1927", "1928", "1929", "1930", "1931", "1932", "1933", "1934", "1935", "1936", "1937", "1938", "1939", "1940", "1941", "1942", "1943", "1944", "1945", "1946", "1947", "1948", "1949", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038", "2039", "2040", "2041", "2042", "2043", "2044", "2045", "2046", "2047", "2048", "2049", "2050", "2051", "2052", "2053", "2054", "2055", "2056", "2057", "2058", "2059", "2060", "2061", "2062", "2063", "2064", "2065", "2066", "2067", "2068", "2069", "2070", "2071", "2072", "2073", "2074", "2075", "2076", "2077", "2078", "2079", "2080", "2081", "2082", "2083", "2084", "2085", "2086", "2087", "2088", "2089", "2090", "2091", "2092", "2093", "2094", "2095", "2096", "2097", "2098", "2099", "2100", " " }));
-
-        jLabel19.setText("/");
-
-        rok_s2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99" }));
-
-        Zapisz_sem.setText("Zapisz");
-        Zapisz_sem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Zapisz_semActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Dodawanie planu");
-
-        jLabel20.setText("Przedmiot");
-
-        przedmioty_plan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        godziny_plan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        godziny_plan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                godziny_planActionPerformed(evt);
-            }
-        });
-
-        jLabel21.setText("Godziny");
-
-        jLabel22.setText("Sala");
-
-        sala_plan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        javax.swing.GroupLayout fSemstrLayout = new javax.swing.GroupLayout(fSemstr.getContentPane());
-        fSemstr.getContentPane().setLayout(fSemstrLayout);
-        fSemstrLayout.setHorizontalGroup(
-            fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(fSemstrLayout.createSequentialGroup()
-                .addGroup(fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(fSemstrLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(przedmioty_plan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(197, 197, 197)
-                        .addComponent(jLabel1))
-                    .addGroup(fSemstrLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(fSemstrLayout.createSequentialGroup()
-                                .addGroup(fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fSemstrLayout.createSequentialGroup()
-                                        .addComponent(jLabel21)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fSemstrLayout.createSequentialGroup()
-                                        .addComponent(jLabel22)
-                                        .addGap(28, 28, 28)))
-                                .addGroup(fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(sala_plan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(godziny_plan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(fSemstrLayout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(semestr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel18)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rok_s1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel19)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rok_s2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Zapisz_sem))
-                    .addGroup(fSemstrLayout.createSequentialGroup()
-                        .addGap(280, 280, 280)
-                        .addComponent(jLabel7)))
-                .addContainerGap(392, Short.MAX_VALUE))
-        );
-        fSemstrLayout.setVerticalGroup(
-            fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(fSemstrLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(semestr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel18)
-                    .addComponent(rok_s1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19)
-                    .addComponent(rok_s2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Zapisz_sem))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addGap(2, 2, 2)
-                .addGroup(fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
-                    .addComponent(przedmioty_plan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21)
-                    .addComponent(godziny_plan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sala_plan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel22))
-                .addContainerGap(292, Short.MAX_VALUE))
-        );
-
-        fMain.addTab("Semestr, Plan", fSemstr);
 
         fNauczyciele.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         fNauczyciele.setTitle("Nauczyciele");
@@ -1037,46 +1004,47 @@ public final class GUI extends javax.swing.JFrame {
             .addGroup(fNauczycieleLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(fNauczycieleLayout.createSequentialGroup()
-                        .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(fNauczycieleLayout.createSequentialGroup()
-                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(dzien_dyz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40))
-                            .addComponent(aktualizuj_dyz))
-                        .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(fNauczycieleLayout.createSequentialGroup()
-                                .addGap(166, 166, 166)
-                                .addComponent(Anuluj_N))
-                            .addGroup(fNauczycieleLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                                .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(godziny_dyz_od_h, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(godziny_dyz_od_m, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel17)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(godziny_dyz_do_h, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(godziny_dyz_do_m, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(lista_dyz)
                     .addGroup(fNauczycieleLayout.createSequentialGroup()
-                        .addComponent(First_dyz)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Previous_dyz)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Next_dyz)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Last_dyz)
+                        .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(fNauczycieleLayout.createSequentialGroup()
+                                .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(fNauczycieleLayout.createSequentialGroup()
+                                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(dzien_dyz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(40, 40, 40))
+                                    .addComponent(aktualizuj_dyz))
+                                .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(fNauczycieleLayout.createSequentialGroup()
+                                        .addGap(166, 166, 166)
+                                        .addComponent(Anuluj_N))
+                                    .addGroup(fNauczycieleLayout.createSequentialGroup()
+                                        .addComponent(jLabel16)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(godziny_dyz_od_h, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(godziny_dyz_od_m, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel17)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(godziny_dyz_do_h, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(godziny_dyz_do_m, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(fNauczycieleLayout.createSequentialGroup()
+                                .addComponent(First_dyz)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Previous_dyz)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Next_dyz)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Last_dyz)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(sala, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(fNauczycieleLayout.createSequentialGroup()
                 .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(fNauczycieleLayout.createSequentialGroup()
@@ -1126,7 +1094,7 @@ public final class GUI extends javax.swing.JFrame {
                     .addComponent(lista_n, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BoxTak)
                     .addComponent(BoxNie))
@@ -1156,275 +1124,211 @@ public final class GUI extends javax.swing.JFrame {
                 .addComponent(lista_dyz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Delete)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         fMain.addTab("Nauczyciele", fNauczyciele);
+
+        fSemstr.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        fSemstr.setTitle("Plan zajęć");
+        fSemstr.setVisible(true);
+
+        jLabel7.setText("Zarządzanie Semestrem");
+
+        jLabel10.setText("Semestr");
+
+        semestr.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "zimowy", "letni" }));
+
+        jLabel18.setText("Rok");
+
+        rok_s1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1900", "1901", "1902", "1903", "1904", "1905", "1906", "1907", "1908", "1909", "1910", "1911", "1912", "1913", "1914", "1915", "1916", "1917", "1918", "1919", "1920", "1921", "1922", "1923", "1924", "1925", "1926", "1927", "1928", "1929", "1930", "1931", "1932", "1933", "1934", "1935", "1936", "1937", "1938", "1939", "1940", "1941", "1942", "1943", "1944", "1945", "1946", "1947", "1948", "1949", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038", "2039", "2040", "2041", "2042", "2043", "2044", "2045", "2046", "2047", "2048", "2049", "2050", "2051", "2052", "2053", "2054", "2055", "2056", "2057", "2058", "2059", "2060", "2061", "2062", "2063", "2064", "2065", "2066", "2067", "2068", "2069", "2070", "2071", "2072", "2073", "2074", "2075", "2076", "2077", "2078", "2079", "2080", "2081", "2082", "2083", "2084", "2085", "2086", "2087", "2088", "2089", "2090", "2091", "2092", "2093", "2094", "2095", "2096", "2097", "2098", "2099", "2100", " " }));
+
+        jLabel19.setText("/");
+
+        rok_s2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99" }));
+
+        Zapisz_sem.setText("Zapisz");
+        Zapisz_sem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Zapisz_semActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout fSemstrLayout = new javax.swing.GroupLayout(fSemstr.getContentPane());
+        fSemstr.getContentPane().setLayout(fSemstrLayout);
+        fSemstrLayout.setHorizontalGroup(
+            fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fSemstrLayout.createSequentialGroup()
+                .addGroup(fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(fSemstrLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(semestr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rok_s1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rok_s2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Zapisz_sem))
+                    .addGroup(fSemstrLayout.createSequentialGroup()
+                        .addGap(280, 280, 280)
+                        .addComponent(jLabel7)))
+                .addContainerGap(476, Short.MAX_VALUE))
+        );
+        fSemstrLayout.setVerticalGroup(
+            fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fSemstrLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(fSemstrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(semestr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18)
+                    .addComponent(rok_s1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19)
+                    .addComponent(rok_s2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Zapisz_sem))
+                .addContainerGap(383, Short.MAX_VALUE))
+        );
+
+        fMain.addTab("Semestr", fSemstr);
+
+        fTest.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        fTest.setPreferredSize(new java.awt.Dimension(870, 470));
+        fTest.setVisible(true);
+
+        sPlan2.setBackground(new java.awt.Color(255, 255, 255));
+        sPlan2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        sPlan3.setBackground(new java.awt.Color(255, 255, 255));
+        sPlan3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        sPlan4.setBackground(new java.awt.Color(255, 255, 255));
+        sPlan4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        sPlan1.setBackground(new java.awt.Color(255, 255, 255));
+        sPlan1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        sPlan5.setBackground(new java.awt.Color(255, 255, 255));
+        sPlan5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        sPlan0.setBackground(new java.awt.Color(255, 255, 255));
+        sPlan0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        sPlan0.setPreferredSize(new java.awt.Dimension(465, 402));
+
+        tGodz.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"8:00 - 10:00"},
+                {"10:00 - 12:00"},
+                {"12:00 - 14:00"},
+                {"14:00 - 16:00"},
+                {"16:00 - 18:00"},
+                {"18:00 - 20:00"}
+            },
+            new String [] {
+                "Godzina"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        sPlan0.setViewportView(tGodz);
+        if (tGodz.getColumnModel().getColumnCount() > 0) {
+            tGodz.getColumnModel().getColumn(0).setResizable(false);
+        }
+        try
+        {
+            for (int row = 0; row < tGodz.getRowCount(); row++)
+            {
+                int rowHeight = tGodz.getRowHeight();
+
+                for (int column = 0; column < tGodz.getColumnCount(); column++)
+                {
+                    Component comp = tGodz.prepareRenderer(tGodz.getCellRenderer(row, column), row, column);
+                    rowHeight = 55;
+                }
+
+                tGodz.setRowHeight(row, rowHeight);
+
+            }
+            tGodz.setShowHorizontalLines(true);
+            tGodz.setShowVerticalLines(true);
+            tGodz.setGridColor(Color.orange);
+            tGodz.setBackground(new java.awt.Color(255, 255, 204));
+        }
+        catch(ClassCastException e) {}
+
+        javax.swing.GroupLayout fTestLayout = new javax.swing.GroupLayout(fTest.getContentPane());
+        fTest.getContentPane().setLayout(fTestLayout);
+        fTestLayout.setHorizontalGroup(
+            fTestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fTestLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(sPlan0, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sPlan1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sPlan2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sPlan3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sPlan4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sPlan5, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        fTestLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {sPlan2, sPlan3, sPlan4, sPlan5});
+
+        fTestLayout.setVerticalGroup(
+            fTestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fTestLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(fTestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sPlan2, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sPlan3, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sPlan4, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sPlan5, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sPlan1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sPlan0, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(61, 61, 61))
+        );
+
+        fMain.addTab("", new javax.swing.ImageIcon(getClass().getResource("/organizer/icon_plan.PNG")), fTest); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(fMain, javax.swing.GroupLayout.PREFERRED_SIZE, 795, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(fMain, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(fMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void bSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSaveActionPerformed
-        // TODO add your handling code here:
-        String nazwa = tf_nazwa.getText();
-
-        
-
-        try{
-            
-            rs_p.updateString("NAZWA", nazwa);
-            rs_p.updateRow();
-            JOptionPane.showMessageDialog(GUI.this, "Zaktualizowano");
-        } catch (SQLException err) {
-            System.out.println(err.getMessage());
-        }
-    }//GEN-LAST:event_bSaveActionPerformed
-
-    private void bLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLastActionPerformed
-        // TODO add your handling code here:
-        try{
-            while(rs_p.next()){
-                int id_kol = rs_p.getInt("ID_PRZEDMIOTU");
-                int id_godz = rs_p.getInt("ID_GODZINY");
-                String id = Integer.toString(id_kol);
-                String nazwa = rs_p.getString("NAZWA");
-                String sala = rs_p.getString("SALA");
-                String dzien = rs_p.getString("DZIEŃ");
-                
-                prz_info.setText(nazwa + ", " + sala + ", " + dzien + "" + "");
-                tf_nazwa.setText(nazwa);
-            }
-        } catch (SQLException err) {
-            JOptionPane.showMessageDialog(GUI.this, err.getMessage());
-        }
-    }//GEN-LAST:event_bLastActionPerformed
-
-    private void bFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bFirstActionPerformed
-        // TODO add your handling code here:
-        try{
-            while(rs_p.previous()){
-                int id_kol = rs_p.getInt("ID_PRZEDMIOTU");
-                int id_godz = rs_p.getInt("ID_GODZINY");
-                String id = Integer.toString(id_kol);
-                String nazwa = rs_p.getString("NAZWA");
-                String sala = rs_p.getString("SALA");
-                String dzien = rs_p.getString("DZIEŃ");
-                
-                prz_info.setText(nazwa + ", " + sala + ", " + dzien + "" + "");
-                tf_nazwa.setText(nazwa);
-            }
-        } catch (SQLException err) {
-            JOptionPane.showMessageDialog(GUI.this, err.getMessage());
-        }
-    }//GEN-LAST:event_bFirstActionPerformed
-
-    private void bPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPrevActionPerformed
-        // TODO add your handling code here:
-        try{
-            if(rs_p.previous()){
-                int id_kol = rs_p.getInt("ID_PRZEDMIOTU");
-                int id_godz = rs_p.getInt("ID_GODZINY");
-                String id = Integer.toString(id_kol);
-                String nazwa = rs_p.getString("NAZWA");
-                String sala = rs_p.getString("SALA");
-                String dzien = rs_p.getString("DZIEŃ");
-                
-                prz_info.setText(nazwa + ", " + sala + ", " + dzien + "" + "");
-                tf_nazwa.setText(nazwa);
-            } else {
-                rs_p.next();
-                JOptionPane.showMessageDialog(GUI.this, "To jest pierwszy przedmiot.");
-            }
-        } catch (SQLException err) {
-            JOptionPane.showMessageDialog(GUI.this, err.getMessage());
-        }
-    }//GEN-LAST:event_bPrevActionPerformed
-
-    private void bNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNextActionPerformed
-        // TODO add your handling code here:
-        try{
-            if(rs_p.next()){
-                int id_kol = rs_p.getInt("ID_PRZEDMIOTU");
-                int id_godz = rs_p.getInt("ID_GODZINY");
-                String id = Integer.toString(id_kol);
-                String nazwa = rs_p.getString("NAZWA");
-                String sala = rs_p.getString("SALA");
-                String dzien = rs_p.getString("DZIEŃ");
-                
-                prz_info.setText(nazwa + ", " + sala + ", " + dzien + "" + "");
-                tf_nazwa.setText(nazwa);
-            } else {
-                rs_p.previous();
-                JOptionPane.showMessageDialog(GUI.this, "To jest osatni przedmiot.");
-            }
-        } catch (SQLException err) {
-            JOptionPane.showMessageDialog(GUI.this, err.getMessage());
-        }
-    }//GEN-LAST:event_bNextActionPerformed
-
-    private void bAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddActionPerformed
-        // TODO add your handling code here:
-        try{
-            current_row = rs_p.getRow(); 
-            while(rs_p.next())
-            {
-                current_row = rs_p.getInt("ID_PRZEDMIOTU");
-            }
-            current_row ++;
-            
-
-            tf_nazwa.setText("");
-            tf_prz_sala.setText("");
-            
-            bFirst.setEnabled(false);
-            bLast.setEnabled(false);
-            bNext.setEnabled(false);
-            bPrev.setEnabled(false);
-            bSave.setEnabled(false);
-            bSave.setEnabled(false);
-            bRemove.setEnabled(false);
-        
-            bSaveNew.setEnabled(true);
-            bCancelNew.setEnabled(true);
-            
-            
-        }
-       catch (SQLException err){System.out.println(err.getMessage());} 
-    }//GEN-LAST:event_bAddActionPerformed
-
-    private void bCancelNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelNewActionPerformed
-        // TODO add your handling code here:
-        
-        try{
-            
-            while(rs_p.previous())
-            {
-                current_row = rs_p.getRow();
-            } 
-            rs_p.absolute(current_row);
-            
-            tf_nazwa.setText(rs_p.getString("NAZWA"));
-            
-            
-        bFirst.setEnabled(true);
-        bLast.setEnabled(true);
-        bNext.setEnabled(true);
-        bPrev.setEnabled(true);
-        bSave.setEnabled(true);
-        bSave.setEnabled(true);
-        bRemove.setEnabled(true);
-        
-        bSaveNew.setEnabled(false);
-        bCancelNew.setEnabled(false);
-        }
-        catch(SQLException err) {System.out.println(err.getMessage());}
-        
-    }//GEN-LAST:event_bCancelNewActionPerformed
-
-        @SuppressWarnings("empty-statement")
-    private void bSaveNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSaveNewActionPerformed
-        // TODO add your handling code here:
-        String nazwa = tf_nazwa.getText();
-        String sala = tf_prz_sala.getText();
-        String dzien = dzien_plan1.getSelectedItem().toString();
-        int id_nauczyciela = get_id_nauczyciela();
-        int id_typu = get_id_typu();
-        int id_godziny = get_id_godziny();
-        int id_semestru = get_id_semestru();
-        
-        try{
-            while(rs_p.previous());
-            while(rs_p.next())
-            {
-                current_row = rs_p.getInt("ID_PRZEDMIOTU");
-            }
-            current_row ++;
-             
-            rs_p.moveToInsertRow();
-            
-             JOptionPane.showMessageDialog(null, "ID: " + current_row + "Nazwa: " + nazwa +"\nSala: " + 
-                sala + "\nDzien: " + dzien + "\nid_nauczyciela: " + Integer.toString(id_nauczyciela)
-                +"\nid_typu: " + Integer.toString(id_typu)
-                        +"\nid_semestru: " + Integer.toString(id_semestru));
-             
-            rs_p.updateInt("ID_PRZEDMIOTU", current_row);
-            rs_p.updateString("NAZWA", nazwa);
-            rs_p.updateString("SALA", sala);
-            rs_p.updateString("DZIEŃ", dzien);
-            rs_p.updateInt("ID_NAUCZYCIELA",id_nauczyciela);
-            rs_p.updateInt("ID_TYPU",id_typu);
-            rs_p.updateInt("ID_SEMESTRU",id_semestru);
-            rs_p.updateInt("ID_GODZINY",id_godziny);
-            
-            rs_p.insertRow();
-             
-            stmt_p.close();
-            rs_p.close();
-             
-            stmt_p = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql2 = "SELECT * FROM PRZEDMIOTY";
-            rs_p = stmt_p.executeQuery(sql2);
-            
-            while(rs_p.next());
-
-            
-            bFirst.setEnabled(true);
-            bLast.setEnabled(true);
-            bNext.setEnabled(true);
-            bPrev.setEnabled(true);
-            bSave.setEnabled(true);
-            bSave.setEnabled(true);
-            bRemove.setEnabled(true);
-        
-            bSaveNew.setEnabled(false);
-            bCancelNew.setEnabled(false);
-        
-            
-            //tf_nazwa.setText(nazwa2);
-             
-             
-        } catch (SQLException err) {
-            System.out.println(err.getMessage());
-        }
-    }//GEN-LAST:event_bSaveNewActionPerformed
-
-    private void bRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRemoveActionPerformed
-        // TODO add your handling code here:
-        try {       
-            rs_p.deleteRow();
-            stmt_p.close();
-            rs_p.close();
-            stmt_p = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql2 = "SELECT * FROM PRZEDMIOTY";
-            rs_p = stmt_p.executeQuery(sql2);
-             
-            rs_p.next();
-            int id_kol = rs_p.getInt("ID_PRZEDMIOTU");
-            String id = Integer.toString(id_kol);
-            String nazwa = rs_p.getString("NAZWA");
-             
-            
-            tf_nazwa.setText(nazwa);
-             
-        } catch (SQLException err){
-            JOptionPane.showMessageDialog(GUI.this, err.getMessage());
-        }
-    }//GEN-LAST:event_bRemoveActionPerformed
 
     private void typ_wydarzenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typ_wydarzenActionPerformed
 String typy= typ_wydarzen.getSelectedItem().toString();
@@ -1671,10 +1575,6 @@ try{
         }
     }//GEN-LAST:event_usun_wydActionPerformed
 
-    private void tf_nazwaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_nazwaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_nazwaActionPerformed
-
     private void lista_nActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lista_nActionPerformed
         // TODO add your handling code here:
 
@@ -1766,17 +1666,7 @@ while(rs_n.next())
 
     private void aktualizuj_dyzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aktualizuj_dyzActionPerformed
         String miejsce = sala.getText();
-      
-      
-         
-      
-      
-      
-      String data_w =dzien_dyz.getSelectedItem().toString();
-     
-      
-      
-       
+        String data_w =dzien_dyz.getSelectedItem().toString();
         String czas_od = (godziny_dyz_od_h.getSelectedItem().toString()+":"+godziny_dyz_od_m.getSelectedItem().toString()+":00");
             SimpleDateFormat informat =  new SimpleDateFormat("hh:mm:ss");
             String czas_do = (godziny_dyz_do_h.getSelectedItem().toString()+":"+godziny_dyz_do_m.getSelectedItem().toString()+":00");
@@ -1904,129 +1794,52 @@ while(rs_n.next())
         }
     }//GEN-LAST:event_DeleteActionPerformed
 
-    private void Zapisz_semActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Zapisz_semActionPerformed
-      String nazwa = semestr.getSelectedItem().toString();
-      String rok = (rok_s1.getSelectedItem().toString()+"/"+rok_s2.getSelectedItem().toString());
-      
-      
-        try{
-             
-            
-            while(rs_s.next())
-            {
-                current_row = rs_s.getInt("ID_SEMESTRU");
-            }
-            current_row ++;
-            
-             //System.out.println(date);
-		//System.out.println(formatter.format(date));
-                //data = informat.parse(czas);
-            rs_s.moveToInsertRow();
-            
-            rs_s.updateInt("id_semestru",current_row);
-            rs_s.updateString("NAZWA", nazwa);
-            rs_s.updateString("ROK", rok);
-            
-            
-            rs_s.insertRow();
-             
-            stmt_s.close();
-            rs_s.close();
-             
-            stmt_s = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql3 = "SELECT * FROM SEMESTR";
-            rs_s = stmt_s.executeQuery(sql3);
-            
-                while (rs_s.next())
-                {
-                   int id_kol = rs_s.getInt("id_semestru");
-                   String id = Integer.toString(id_kol);
-                   String rok1 = rs_s.getString("ROK");
-                   String nazwa1 = rs_s.getString("NAZWA");
-                   
-                   
-                }
-                
-               // while (rs_d.previous()){current_row = rs_d.getRow();}
-                //rs_d.absolute(current_row);
-            
-           // lista_dyz.setText(rs_d.getString("DZIEN")+ " "+ "od " + rs_d.getString("GODZINA_OD")+ " "+" do " +rs_d.getString("GODZINA_DO") );
-     
-        } catch (SQLException err) {
-            System.out.println(err.getMessage());
-        }  {
-            } 
-    }//GEN-LAST:event_Zapisz_semActionPerformed
-
-    private void godziny_planActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_godziny_planActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_godziny_planActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void tf_prz_salaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_prz_salaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_prz_salaActionPerformed
-
-    private void lista_n2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lista_n2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lista_n2ActionPerformed
-
     private void update()
     {
         try{
-            while(rs_n.previous()) {}
-            lista_n2.removeAllItems();
-            while(rs_n.next())
+            while(rs_p.previous()) {}
+            cbPrzedmioty.removeAllItems();
+            while(rs_p.next())
             {
-                lista_n2.addItem(rs_n.getString("IMIE") + " " + rs_n.getString("NAZWISKO"));
+                cbPrzedmioty.addItem(rs_p.getString("NAZWA"));
             }
             
-             while(rs_pl.previous()) {}
-            lista_plan1.removeAllItems();
-            while(rs_pl.next())
+            while(rs_p.previous()) {}
+            cbPrzedmioty2.removeAllItems();
+            while(rs_p.next())
             {
-                lista_plan1.addItem(rs_pl.getString("NAZWA") + " " + rs_pl.getString("ROK"));
+                cbPrzedmioty2.addItem(rs_p.getString("NAZWA"));
+            }
+            
+            while(rs_n.previous()) {}
+            cbNauczyciele.removeAllItems();
+            while(rs_n.next())
+            {
+                cbNauczyciele.addItem(rs_n.getString("IMIE") + " " + rs_n.getString("NAZWISKO"));
+            }
+            
+             while(rs_s.previous()) {}
+            cbSemestry.removeAllItems();
+            while(rs_s.next())
+            {
+                cbSemestry.addItem(rs_s.getString("NAZWA") + " " + rs_s.getString("ROK"));
             }
             
             while(rs_t.previous()) {}
-            lista_typy1.removeAllItems();
+            cbTyp.removeAllItems();
             while(rs_t.next())
             {
-                lista_typy1.addItem(rs_t.getString("NAZWA"));
+                cbTyp.addItem(rs_t.getString("NAZWA"));
             }
             
             while(rs_g.previous()) {}
-            lista_godz1.removeAllItems();
+            cbGodziny.removeAllItems();
             
             while(rs_g.next())
             {
-                lista_godz1.addItem(rs_g.getString("ID_GODZINY") + ") " + rs_g.getTime("GODZINA_OD") + " - " + rs_g.getTime("GODZINA_DO"));
+                cbGodziny.addItem(rs_g.getString("ID_GODZINY") + ") " + rs_g.getTime("GODZINA_OD") + " - " + rs_g.getTime("GODZINA_DO"));
             }
-            
-            while(rs_p.previous()) {}
-            przedmioty_plan.removeAllItems();
-            while(rs_p.next())
-            {
-                przedmioty_plan.addItem(rs_p.getString("NAZWA"));
-            }
-            
-            while(rs_g.previous()) {}
-            godziny_plan.removeAllItems();
-            while(rs_g.next())
-            {
-                godziny_plan.addItem(rs_g.getString("GODZINA_OD")+" - "+rs_g.getString("GODZINA_DO"));
-            }
-            
-            while(rs_p.previous()) {}
-            sala_plan.removeAllItems();
-            while(rs_p.next())
-            {
-                sala_plan.addItem(rs_p.getString("SALA"));
-            }
-            
+     
             while(rs_n.previous()) {}
             lista_n.removeAllItems();
             while(rs_n.next())
@@ -2040,10 +1853,10 @@ while(rs_n.next())
         }
     }
     
-    private int get_id_nauczyciela()
+    private int get_id_nauczyciela(javax.swing.JComboBox c)
     {
         int id_nauczyciela=0;
-        String[] wybor = (lista_n2.getSelectedItem().toString()).split("\\s+");
+        String[] wybor = (c.getSelectedItem().toString()).split("\\s+");
         try{
             rs_pom1.close();
             stmt_pom1.close();
@@ -2055,17 +1868,32 @@ while(rs_n.next())
         return(id_nauczyciela);
     }
     
-    private int get_id_godziny()
+    private int get_id_przedmiotu(javax.swing.JComboBox c)
     {
-        String[] wybor = (lista_godz1.getSelectedItem().toString()).split("\\)");
+        int id_przedmiotu=0;
+        String wybor = c.getSelectedItem().toString();
+        try{
+            rs_pom1.close();
+            stmt_pom1.close();
+            stmt_pom1 = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            rs_pom1 = stmt_pom1.executeQuery("SELECT * FROM PRZEDMIOTY WHERE NAZWA = '" + wybor + "'");
+            while(rs_pom1.next()) id_przedmiotu = rs_pom1.getInt("ID_PRZEDMIOTU");
+            
+        } catch (SQLException err) {System.out.println(err.getMessage()); }
+        return(id_przedmiotu);
+    }
+    
+    private int get_id_godziny(javax.swing.JComboBox c)
+    {
+        String[] wybor = (c.getSelectedItem().toString()).split("\\)");
         int id_godziny = Integer.parseInt(wybor[0]);
         return(id_godziny);
     }
     
-    private int get_id_typu()
+    private int get_id_typu(javax.swing.JComboBox c)
     {
         int id_typu=0;
-        String wybor = (lista_typy1.getSelectedItem().toString());
+        String wybor = (c.getSelectedItem().toString());
         try{
             rs_pom1.close();
             stmt_pom1.close();
@@ -2076,10 +1904,10 @@ while(rs_n.next())
         return (id_typu);
     }
     
-    private int get_id_semestru()
+    private int get_id_semestru(javax.swing.JComboBox c)
     {
         int id_semestru=0;
-        String[] wybor = (lista_plan1.getSelectedItem().toString()).split("\\s+");
+        String[] wybor = (c.getSelectedItem().toString()).split("\\s+");
         try{
             rs_pom1.close();
             stmt_pom1.close();
@@ -2090,14 +1918,295 @@ while(rs_n.next())
         return(id_semestru);
     }
     
-    private void lista_godz1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lista_godz1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lista_godz1ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void prz_infoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prz_infoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prz_infoActionPerformed
+    private void Zapisz_semActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Zapisz_semActionPerformed
+        String nazwa = semestr.getSelectedItem().toString();
+        String rok = (rok_s1.getSelectedItem().toString()+"/"+rok_s2.getSelectedItem().toString());
 
+        try{
+
+            while(rs_s.next())
+            {
+                current_row = rs_s.getInt("ID_SEMESTRU");
+            }
+            current_row ++;
+
+            //System.out.println(date);
+            //System.out.println(formatter.format(date));
+            //data = informat.parse(czas);
+            rs_s.moveToInsertRow();
+
+            rs_s.updateInt("id_semestru",current_row);
+            rs_s.updateString("NAZWA", nazwa);
+            rs_s.updateString("ROK", rok);
+
+            rs_s.insertRow();
+
+            stmt_s.close();
+            rs_s.close();
+
+            stmt_s = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String sql3 = "SELECT * FROM SEMESTR";
+            rs_s = stmt_s.executeQuery(sql3);
+
+            while (rs_s.next())
+            {
+                int id_kol = rs_s.getInt("id_semestru");
+                String id = Integer.toString(id_kol);
+                String rok1 = rs_s.getString("ROK");
+                String nazwa1 = rs_s.getString("NAZWA");
+
+            }
+
+            // while (rs_d.previous()){current_row = rs_d.getRow();}
+            //rs_d.absolute(current_row);
+
+            // lista_dyz.setText(rs_d.getString("DZIEN")+ " "+ "od " + rs_d.getString("GODZINA_OD")+ " "+" do " +rs_d.getString("GODZINA_DO") );
+
+        } catch (SQLException err) {
+            System.out.println(err.getMessage());
+        }  {
+        }
+    }//GEN-LAST:event_Zapisz_semActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void bAnulujZajeciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAnulujZajeciaActionPerformed
+        Zajecia_set_buttons(false);
+    }//GEN-LAST:event_bAnulujZajeciaActionPerformed
+
+    private void bZapiszZajeciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bZapiszZajeciaActionPerformed
+        String sala = tfSala.getText();
+        String dzien = dzien_plan1.getSelectedItem().toString();
+        int id_nauczyciela = get_id_nauczyciela(cbNauczyciele);
+        int id_typu = get_id_typu(cbTyp);
+        int id_godziny = get_id_godziny(cbGodziny);
+        int id_semestru = get_id_semestru(cbSemestry);
+        int id_przedmiotu = get_id_przedmiotu(cbPrzedmioty2);
+        //JOptionPane.showMessageDialog(null, id_przedmiotu+"-"+id_nauczyciela+"-"+id_typu+"-"+id_godziny+"-"+id_semestru);
+        
+        if (sala.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Proszę podać salę.","Błąd wpisywania", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try{
+            while(rs_z.previous());
+            while(rs_z.next())
+            {
+                current_row = rs_z.getInt("ID_ZAJEC");
+            }
+            current_row ++;
+
+            rs_z.moveToInsertRow();
+
+            rs_z.updateInt("ID_ZAJEC", current_row);
+            rs_z.updateInt("ID_PRZEDMIOTU", id_przedmiotu);
+            rs_z.updateString("SALA", sala);
+            rs_z.updateString("DZIEN", dzien);
+            rs_z.updateInt("ID_NAUCZYCIELA",id_nauczyciela);
+            rs_z.updateInt("ID_TYPU",id_typu);
+            rs_z.updateInt("ID_SEMESTRU",id_semestru);
+            rs_z.updateInt("ID_GODZINY",id_godziny);
+
+            rs_z.insertRow();
+
+            stmt_z.close();
+            rs_z.close();
+            stmt_pl.close();
+            rs_pl.close();
+
+            stmt_z = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            rs_z = stmt_z.executeQuery("SELECT * FROM ZAJĘCIA");
+
+            while(rs_z.previous());
+            
+            
+            String sql_pl = "select p.NAZWA as NAZWA , g.GODZINA_OD, g.GODZINA_DO, t.NAZWA as Typ, n.IMIE, n.NAZWISKO, z.SALA, z.DZIEN\n" +
+                        "FROM ZAJĘCIA z JOIN PRZEDMIOTY p Using(ID_PRZEDMIOTU)\n" +
+                        "JOIN GODZINY g USING(ID_GODZINY)\n" +
+                        "JOIN TYPY_ZAJEC t USING(ID_TYPU)\n" +
+                        "JOIN NAUCZYCIELE n USING (ID_NAUCZYCIELA)";
+            stmt_pl = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            rs_pl = stmt_z.executeQuery(sql_pl);
+            while(rs_pl.previous());
+            int i = 0;
+            while(rs_pl.next()) i++;
+            while(rs_pl.previous());
+            lZajecia2.setText("/"+Integer.toString(i));
+            lZajecia1.setText("0");
+
+        } catch (SQLException err) {System.out.println(err.getMessage());}
+        Zajecia_set_buttons(false);
+    }//GEN-LAST:event_bZapiszZajeciaActionPerformed
+
+    private void bDodajZajeciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDodajZajeciaActionPerformed
+        Zajecia_set_buttons(true);
+    }//GEN-LAST:event_bDodajZajeciaActionPerformed
+
+    private void tfNazwaPrzedmiotuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNazwaPrzedmiotuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfNazwaPrzedmiotuActionPerformed
+
+    private void bAnulujPrzedmiotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAnulujPrzedmiotActionPerformed
+        tfNazwaPrzedmiotu.setText("");
+        bZapiszPrzedmiot.setEnabled(false);
+        bAnulujPrzedmiot.setEnabled(false);
+        tfNazwaPrzedmiotu.setEnabled(false);
+    }//GEN-LAST:event_bAnulujPrzedmiotActionPerformed
+
+    private void bZapiszPrzedmiotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bZapiszPrzedmiotActionPerformed
+        String nazwa = tfNazwaPrzedmiotu.getText();
+        if(nazwa.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Proszę wpisać nazwę przedmiotu.","Błąd wpisywania",
+                JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try{
+            while(rs_p.previous());
+            while(rs_p.next())
+            {
+                current_row = rs_p.getInt("ID_PRZEDMIOTU");
+            }
+            current_row ++;
+
+            rs_p.moveToInsertRow();
+            rs_p.updateInt("ID_PRZEDMIOTU", current_row);
+            rs_p.updateString("NAZWA", nazwa);
+            rs_p.insertRow();
+            stmt_p.close();
+            rs_p.close();
+            stmt_p = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String sql2 = "SELECT * FROM PRZEDMIOTY";
+            rs_p = stmt_p.executeQuery(sql2);
+
+            tfNazwaPrzedmiotu.setText("");
+            bZapiszPrzedmiot.setEnabled(false);
+            bAnulujPrzedmiot.setEnabled(false);
+            tfNazwaPrzedmiotu.setEnabled(false);
+            update();
+
+        } catch (SQLException err) {System.out.println(err.getMessage());}
+    }//GEN-LAST:event_bZapiszPrzedmiotActionPerformed
+
+    private void bNowyPrzedmiotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNowyPrzedmiotActionPerformed
+        // TODO add your handling code here:
+        tfNazwaPrzedmiotu.setText("");
+        bZapiszPrzedmiot.setEnabled(true);
+        bAnulujPrzedmiot.setEnabled(true);
+        tfNazwaPrzedmiotu.setEnabled(true);
+    }//GEN-LAST:event_bNowyPrzedmiotActionPerformed
+
+    private void cbPrzedmiotyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPrzedmiotyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbPrzedmiotyActionPerformed
+
+    private void cbGodzinyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbGodzinyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbGodzinyActionPerformed
+
+    private void tfSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSalaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfSalaActionPerformed
+
+    private void cbNauczycieleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbNauczycieleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbNauczycieleActionPerformed
+
+    private void bPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPrevActionPerformed
+        try{
+            if(rs_pl.previous()){
+                /*int godz_od = rs_p.getInt("GODZINA_OD");
+                String s_godz_od = Integer.toString(godz_od);
+                int godz_do = rs_p.getInt("GODZINA_OD");
+                String s_godz_do = Integer.toString(godz_do);*/
+
+                String nazwa = rs_pl.getString("NAZWA");
+                String typ = rs_pl.getString("TYP");
+                String imie = rs_pl.getString("IMIE");
+                String nazwisko = rs_pl.getString("NAZWISKO");
+                String sala = rs_pl.getString("SALA");
+                String dzien = rs_pl.getString("DZIEN");
+
+                tfZajecia.setText(nazwa + "\n" + typ + "\n"
+                    + imie + " " + nazwisko + "\n" + dzien + ", "
+                    + sala + "\n"//s_godz_od + " - " + s_godz_do +"\n"
+                );
+                
+                int i = Integer.parseInt(lZajecia1.getText())-1;
+                lZajecia1.setText(Integer.toString(i));
+
+            } else {
+                rs_pl.next();
+                JOptionPane.showMessageDialog(GUI.this, "To jest pierwszy przedmiot.");
+            }
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(GUI.this, err.getMessage());
+        }
+    }//GEN-LAST:event_bPrevActionPerformed
+
+    private void bNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNextActionPerformed
+        // TODO add your handling code here:
+        try{
+            if(rs_pl.next()){
+                /*int godz_od = rs_p.getInt("GODZINA_OD");
+                String s_godz_od = Integer.toString(godz_od);
+                int godz_do = rs_p.getInt("GODZINA_OD");
+                String s_godz_do = Integer.toString(godz_do);*/
+
+                String nazwa = rs_pl.getString("NAZWA");
+                String typ = rs_pl.getString("TYP");
+                String imie = rs_pl.getString("IMIE");
+                String nazwisko = rs_pl.getString("NAZWISKO");
+                String sala = rs_pl.getString("SALA");
+                String dzien = rs_pl.getString("DZIEN");
+
+                tfZajecia.setText(nazwa + "\n" + typ + "\n"
+                    + imie + " " + nazwisko + "\n" + dzien + ", "
+                    + sala + "\n"//s_godz_od + " - " + s_godz_do +"\n"
+                );
+                
+                int i = Integer.parseInt(lZajecia1.getText())+1;
+                lZajecia1.setText(Integer.toString(i));
+
+            } else {
+                rs_pl.previous();
+                JOptionPane.showMessageDialog(GUI.this, "To jest ostatni przedmiot.");
+            }
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(GUI.this, err.getMessage());
+        }
+    }//GEN-LAST:event_bNextActionPerformed
+
+    private void Zajecia_set_buttons(boolean b)
+    {
+        l1.setEnabled(b);
+        l2.setEnabled(b);
+        l3.setEnabled(b);
+        l4.setEnabled(b);
+        l5.setEnabled(b);
+        l6.setEnabled(b);
+        l7.setEnabled(b);
+        
+        bZapiszZajecia.setEnabled(b);
+        bAnulujZajecia.setEnabled(b);
+        cbPrzedmioty2.setEnabled(b);
+        cbNauczyciele.setEnabled(b);
+        cbTyp.setEnabled(b);
+        cbGodziny.setEnabled(b);
+        dzien_plan1.setEnabled(b);
+        tfSala.setEnabled(b);
+        cbSemestry.setEnabled(b);
+
+    }
+    
     
     
     /**
@@ -2146,17 +2255,22 @@ while(rs_n.next())
     private javax.swing.JButton Zapisz_sem;
     private javax.swing.JButton aktualizuj_dyz;
     private javax.swing.JButton anuluj_wyd;
-    private javax.swing.JButton bAdd;
-    private javax.swing.JButton bCancelNew;
-    private javax.swing.JButton bFirst;
-    private javax.swing.JButton bLast;
+    private javax.swing.JButton bAnulujPrzedmiot;
+    private javax.swing.JButton bAnulujZajecia;
+    private javax.swing.JButton bDodajZajecia;
     private javax.swing.JButton bNext;
+    private javax.swing.JButton bNowyPrzedmiot;
     private javax.swing.JButton bPrev;
-    private javax.swing.JButton bRemove;
-    private javax.swing.JButton bSave;
-    private javax.swing.JButton bSaveNew;
+    private javax.swing.JButton bZapiszPrzedmiot;
+    private javax.swing.JButton bZapiszZajecia;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox cbGodziny;
+    private javax.swing.JComboBox cbNauczyciele;
+    private javax.swing.JComboBox cbPrzedmioty;
+    private javax.swing.JComboBox cbPrzedmioty2;
+    private javax.swing.JComboBox cbSemestry;
+    private javax.swing.JComboBox cbTyp;
     private javax.swing.JButton dodaj_wyd;
     private javax.swing.JComboBox dzien_dyz;
     private javax.swing.JComboBox dzien_plan1;
@@ -2167,15 +2281,16 @@ while(rs_n.next())
     private javax.swing.JInternalFrame fPrzedmioty;
     private javax.swing.JInternalFrame fSemstr;
     private javax.swing.JInternalFrame fStart;
+    private javax.swing.JInternalFrame fTest;
     private javax.swing.JInternalFrame fWydarzenia;
     private javax.swing.JComboBox godziny_dyz_do_h;
     private javax.swing.JComboBox godziny_dyz_do_m;
     private javax.swing.JComboBox godziny_dyz_od_h;
     private javax.swing.JComboBox godziny_dyz_od_m;
-    private javax.swing.JComboBox godziny_plan;
     private javax.swing.JComboBox godziny_wyd;
     private javax.swing.JTextField imie;
     private javax.swing.JTextField inny_typ;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2188,18 +2303,10 @@ while(rs_n.next())
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2207,13 +2314,20 @@ while(rs_n.next())
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel l1;
+    private javax.swing.JLabel l2;
+    private javax.swing.JLabel l3;
+    private javax.swing.JLabel l4;
+    private javax.swing.JLabel l5;
+    private javax.swing.JLabel l6;
+    private javax.swing.JLabel l7;
+    private javax.swing.JLabel lZajecia1;
+    private javax.swing.JLabel lZajecia2;
     private javax.swing.JTextField lista_dyz;
-    private javax.swing.JComboBox lista_godz1;
     private javax.swing.JComboBox lista_n;
-    private javax.swing.JComboBox lista_n2;
-    private javax.swing.JComboBox lista_plan1;
-    private javax.swing.JComboBox lista_typy1;
     private javax.swing.JTextField lista_wyd;
     private javax.swing.JTextField miejsce_wydarzenia;
     private javax.swing.JComboBox miesiac_wyd;
@@ -2223,20 +2337,27 @@ while(rs_n.next())
     private javax.swing.JButton ost_wyd;
     private javax.swing.JButton pier_wyd;
     private javax.swing.JToggleButton pop_wyd;
-    private javax.swing.JTextField prz_info;
-    private javax.swing.JComboBox przedmioty_plan;
     private javax.swing.JComboBox rok_s1;
     private javax.swing.JComboBox rok_s2;
     private javax.swing.JComboBox rok_wyd;
+    private javax.swing.JScrollPane sPlan0;
+    private javax.swing.JScrollPane sPlan1;
+    private javax.swing.JScrollPane sPlan2;
+    private javax.swing.JScrollPane sPlan3;
+    private javax.swing.JScrollPane sPlan4;
+    private javax.swing.JScrollPane sPlan5;
     private javax.swing.JTextField sala;
-    private javax.swing.JComboBox sala_plan;
     private javax.swing.JComboBox semestr;
+    private javax.swing.JTable tGodz;
     private javax.swing.JTable tPlan;
-    private javax.swing.JTextField tf_nazwa;
-    private javax.swing.JTextField tf_prz_sala;
+    private javax.swing.JTextField tfNazwaPrzedmiotu;
+    private javax.swing.JTextField tfSala;
+    private javax.swing.JTextArea tfZajecia;
     private javax.swing.JComboBox typ_wydarzen;
     private javax.swing.JButton usun_wyd;
     private javax.swing.JButton zapisz_wyd;
     private javax.swing.JButton zmien_wyd;
     // End of variables declaration//GEN-END:variables
 }
+
+
