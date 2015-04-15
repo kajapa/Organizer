@@ -9,19 +9,16 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import javax.swing.JOptionPane;
 
-import organizer.TableFromDatabase;
 
 /**
  *
@@ -30,8 +27,8 @@ import organizer.TableFromDatabase;
 public final class GUI extends javax.swing.JFrame {
     
         Connection con;
-        Statement stmt_p,stmt_w,stmt_n,stmt_d,stmt_s,stmt_g, stmt_t, stmt_pl, stmt_pom1, stmt_z;
-        ResultSet rs_p, rs_w,rs_n, rs_d,rs_s,rs_g,rs_t, rs_pl, rs_pom1, rs_z;
+        Statement stmt_p,stmt_w,stmt_n,stmt_d,stmt_s,stmt_g, stmt_t, stmt_pl, stmt_n1, stmt_pom1, stmt_z;
+        ResultSet rs_p, rs_w,rs_n, rs_d,rs_s,rs_g,rs_t, rs_pl, rs_pom1, rs_z,rs_n1;
         int current_row = 0;
        
     /**
@@ -63,6 +60,7 @@ public final class GUI extends javax.swing.JFrame {
         stmt_p = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE );
         stmt_w = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE );
         stmt_n = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE );
+        stmt_n1 = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE );
         stmt_d = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE );
         stmt_s = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE );
         stmt_g = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE );
@@ -70,15 +68,20 @@ public final class GUI extends javax.swing.JFrame {
         stmt_pl = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE );
         stmt_pom1 = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE );
         stmt_z = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE );
-        String sql = "SELECT * FROM PRZEDMIOTY";
+        String sql2 = "SELECT * FROM PRZEDMIOTY";
+        String sql3 = "SELECT * FROM WYDARZENIA";
+        String sql4 = "SELECT * FROM NAUCZYCIELE";
         String sql_pl = "select p.NAZWA as NAZWA , g.GODZINA_OD, g.GODZINA_DO, t.NAZWA as Typ, n.IMIE, n.NAZWISKO, z.SALA, z.DZIEN\n" +
                         "FROM ZAJĘCIA z JOIN PRZEDMIOTY p Using(ID_PRZEDMIOTU)\n" +
                         "JOIN GODZINY g USING(ID_GODZINY)\n" +
                         "JOIN TYPY_ZAJEC t USING(ID_TYPU)\n" +
                         "JOIN NAUCZYCIELE n USING (ID_NAUCZYCIELA)";
+        String sql_n1 = "SELECT IMIE, NAZWISKO, DZIEN, GODZINA_OD, GODZINA_DO, SALA\n"+
+                    "FROM DYZURY JOIN NAUCZYCIELE USING(ID_NAUCZYCIELA)";
         //rs = stmt.executeQuery(sql);
         rs_p = stmt_p.executeQuery("SELECT * FROM PRZEDMIOTY");
         rs_w = stmt_w.executeQuery("SELECT * FROM WYDARZENIA");
+        rs_n1 = stmt_n1.executeQuery(sql_n1);
         rs_n = stmt_n.executeQuery("SELECT * FROM NAUCZYCIELE");
         rs_d = stmt_d.executeQuery("SELECT * FROM DYZURY");
         rs_s = stmt_s.executeQuery("SELECT * FROM SEMESTR");
@@ -94,6 +97,14 @@ public final class GUI extends javax.swing.JFrame {
         lZajecia2.setText("/"+Integer.toString(i));
         while(rs_pl.previous());
         }
+        
+        {
+        int i = 0;
+        while(rs_d.next()) i++;
+        lDyzur2.setText("/ "+Integer.toString(i));
+        while(rs_d.previous());
+        }
+      
             
                 }
             catch(SQLException err){System.out.println(err.getMessage());}
@@ -153,6 +164,8 @@ public final class GUI extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         lZajecia1 = new javax.swing.JLabel();
         lZajecia2 = new javax.swing.JLabel();
+        zTF = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
         fWydarzenia = new javax.swing.JInternalFrame();
         jLabel3 = new javax.swing.JLabel();
         typ_wydarzen = new javax.swing.JComboBox();
@@ -181,31 +194,37 @@ public final class GUI extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        imie_n = new javax.swing.JTextField();
+        nazwisko_n = new javax.swing.JTextField();
+        Zapisz_N = new javax.swing.JButton();
+        Anuluj_N = new javax.swing.JButton();
+        lista_n = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        Nowy_N = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JSeparator();
         jLabel13 = new javax.swing.JLabel();
-        imie = new javax.swing.JTextField();
-        nazwisko = new javax.swing.JTextField();
-        sala = new javax.swing.JTextField();
+        Nowy_D = new javax.swing.JButton();
+        Zapisz_D = new javax.swing.JButton();
+        Anuluj_D = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        Zapisz_N = new javax.swing.JButton();
-        Anuluj_N = new javax.swing.JButton();
-        First_dyz = new javax.swing.JButton();
-        Previous_dyz = new javax.swing.JButton();
-        Next_dyz = new javax.swing.JButton();
-        Last_dyz = new javax.swing.JButton();
-        lista_dyz = new javax.swing.JTextField();
-        Delete = new javax.swing.JButton();
-        BoxTak = new javax.swing.JRadioButton();
-        BoxNie = new javax.swing.JRadioButton();
-        lista_n = new javax.swing.JComboBox();
-        aktualizuj_dyz = new javax.swing.JButton();
-        godziny_dyz_od_h = new javax.swing.JComboBox();
-        godziny_dyz_od_m = new javax.swing.JComboBox();
-        godziny_dyz_do_m = new javax.swing.JComboBox();
-        godziny_dyz_do_h = new javax.swing.JComboBox();
-        dzien_dyz = new javax.swing.JComboBox();
+        lista_n2 = new javax.swing.JComboBox();
+        dzien_d = new javax.swing.JComboBox();
+        godz_h_od = new javax.swing.JComboBox();
+        godz_min_od = new javax.swing.JComboBox();
+        godz_h_do = new javax.swing.JComboBox();
+        godz_min_do = new javax.swing.JComboBox();
+        jLabel22 = new javax.swing.JLabel();
+        sala_d = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        lista_dyzur = new javax.swing.JTextArea();
+        lDyzur1 = new javax.swing.JLabel();
+        lDyzur2 = new javax.swing.JLabel();
+        Poprzedni_D = new javax.swing.JButton();
+        Nast_D = new javax.swing.JButton();
         fSemstr = new javax.swing.JInternalFrame();
         jLabel7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -446,6 +465,11 @@ public final class GUI extends javax.swing.JFrame {
 
         cbPrzedmioty2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Przedmioty" }));
         cbPrzedmioty2.setEnabled(false);
+        cbPrzedmioty2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbPrzedmioty2ActionPerformed(evt);
+            }
+        });
 
         bDodajZajecia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         bDodajZajecia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/organizer/icon_add_small.png"))); // NOI18N
@@ -500,6 +524,13 @@ public final class GUI extends javax.swing.JFrame {
         lZajecia1.setText("0");
 
         lZajecia2.setText("/10");
+
+        jButton3.setText("Przejdź");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout fPrzedmiotyLayout = new javax.swing.GroupLayout(fPrzedmioty.getContentPane());
         fPrzedmioty.getContentPane().setLayout(fPrzedmiotyLayout);
@@ -577,7 +608,12 @@ public final class GUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lZajecia1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lZajecia2)))))
+                                .addComponent(lZajecia2))
+                            .addGroup(fPrzedmiotyLayout.createSequentialGroup()
+                                .addComponent(zTF, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         fPrzedmiotyLayout.setVerticalGroup(
@@ -616,7 +652,11 @@ public final class GUI extends javax.swing.JFrame {
                                             .addComponent(bPrev)
                                             .addComponent(jButton1)
                                             .addComponent(bNext)))
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(zTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton3)))
                             .addGroup(fPrzedmiotyLayout.createSequentialGroup()
                                 .addGap(11, 11, 11)
                                 .addGroup(fPrzedmiotyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -655,7 +695,7 @@ public final class GUI extends javax.swing.JFrame {
                                     .addComponent(l7))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fPrzedmiotyLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -784,56 +824,53 @@ public final class GUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(miejsce_wydarzenia)
                         .addGap(43, 43, 43))
+                    .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(fWydarzeniaLayout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(fWydarzeniaLayout.createSequentialGroup()
+                                    .addComponent(zapisz_wyd)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(anuluj_wyd))
+                                .addComponent(dodaj_wyd)))
+                        .addGroup(fWydarzeniaLayout.createSequentialGroup()
+                            .addComponent(pier_wyd)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(pop_wyd)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(nast_wyd)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(ost_wyd))
+                        .addComponent(lista_wyd))
+                    .addGroup(fWydarzeniaLayout.createSequentialGroup()
+                        .addComponent(usun_wyd)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(zmien_wyd))
                     .addGroup(fWydarzeniaLayout.createSequentialGroup()
                         .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(fWydarzeniaLayout.createSequentialGroup()
-                                    .addGap(10, 10, 10)
-                                    .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(fWydarzeniaLayout.createSequentialGroup()
-                                            .addComponent(zapisz_wyd)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(anuluj_wyd))
-                                        .addComponent(dodaj_wyd)))
-                                .addGroup(fWydarzeniaLayout.createSequentialGroup()
-                                    .addComponent(pier_wyd)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(pop_wyd)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(nast_wyd)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(ost_wyd))
-                                .addComponent(lista_wyd))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(fWydarzeniaLayout.createSequentialGroup()
-                                .addComponent(usun_wyd)
+                                .addComponent(dzien_wyd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(zmien_wyd))
-                            .addGroup(fWydarzeniaLayout.createSequentialGroup()
-                                .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(fWydarzeniaLayout.createSequentialGroup()
-                                        .addComponent(dzien_wyd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(miesiac_wyd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(rok_wyd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(fWydarzeniaLayout.createSequentialGroup()
-                                        .addComponent(typ_wydarzen, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel8)))
+                                .addComponent(miesiac_wyd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(inny_typ, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(fWydarzeniaLayout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(godziny_wyd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(minuty_wyd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addComponent(rok_wyd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(fWydarzeniaLayout.createSequentialGroup()
+                                .addComponent(typ_wydarzen, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel8)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(fWydarzeniaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(inny_typ, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(fWydarzeniaLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(godziny_wyd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(minuty_wyd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         fWydarzeniaLayout.setVerticalGroup(
@@ -886,91 +923,34 @@ public final class GUI extends javax.swing.JFrame {
         fNauczyciele.setTitle("Nauczyciele");
         fNauczyciele.setVisible(true);
 
-        jLabel9.setText("NAUCZYCIELE");
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setText("Nauczyciele");
 
         jLabel11.setText("Imie");
+        jLabel11.setEnabled(false);
 
         jLabel12.setText("Nazwisko");
+        jLabel12.setEnabled(false);
 
-        jLabel13.setText("Sala");
-        jLabel13.setEnabled(false);
+        imie_n.setEnabled(false);
 
-        sala.setEnabled(false);
+        nazwisko_n.setEnabled(false);
 
-        jLabel14.setText("Wprowadzic dyzur?");
-
-        jLabel15.setText("Dzień:");
-        jLabel15.setEnabled(false);
-
-        jLabel16.setText("godzina od :");
-        jLabel16.setEnabled(false);
-
-        jLabel17.setText("godzina do:");
-        jLabel17.setEnabled(false);
-
+        Zapisz_N.setIcon(new javax.swing.ImageIcon(getClass().getResource("/organizer/icon_yes_small.png"))); // NOI18N
         Zapisz_N.setText("Zapisz");
+        Zapisz_N.setEnabled(false);
         Zapisz_N.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Zapisz_NActionPerformed(evt);
             }
         });
 
+        Anuluj_N.setIcon(new javax.swing.ImageIcon(getClass().getResource("/organizer/icon_no_small.png"))); // NOI18N
         Anuluj_N.setText("Anuluj");
+        Anuluj_N.setEnabled(false);
         Anuluj_N.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Anuluj_NActionPerformed(evt);
-            }
-        });
-
-        First_dyz.setText("|< Poprzedni");
-        First_dyz.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                First_dyzActionPerformed(evt);
-            }
-        });
-
-        Previous_dyz.setText("<< Poprzedni");
-        Previous_dyz.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Previous_dyzActionPerformed(evt);
-            }
-        });
-
-        Next_dyz.setText("Nastepny >>");
-        Next_dyz.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Next_dyzActionPerformed(evt);
-            }
-        });
-
-        Last_dyz.setText("Ostatni>|");
-        Last_dyz.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Last_dyzActionPerformed(evt);
-            }
-        });
-
-        Delete.setText("Usun");
-        Delete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeleteActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(BoxTak);
-        BoxTak.setText("Tak");
-        BoxTak.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BoxTakActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(BoxNie);
-        BoxNie.setSelected(true);
-        BoxNie.setText("Nie");
-        BoxNie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BoxNieActionPerformed(evt);
             }
         });
 
@@ -980,22 +960,104 @@ public final class GUI extends javax.swing.JFrame {
             }
         });
 
-        aktualizuj_dyz.setText("Dodaj");
-        aktualizuj_dyz.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setText("Lista nauczycieli: ");
+
+        Nowy_N.setIcon(new javax.swing.ImageIcon(getClass().getResource("/organizer/icon_add_small.png"))); // NOI18N
+        Nowy_N.setText("Nowy");
+        Nowy_N.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aktualizuj_dyzActionPerformed(evt);
+                Nowy_NActionPerformed(evt);
             }
         });
 
-        godziny_dyz_od_h.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel13.setText("Nowy dyzur");
 
-        godziny_dyz_od_m.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        Nowy_D.setIcon(new javax.swing.ImageIcon(getClass().getResource("/organizer/icon_add_small.png"))); // NOI18N
+        Nowy_D.setText("Nowy");
+        Nowy_D.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Nowy_DActionPerformed(evt);
+            }
+        });
 
-        godziny_dyz_do_m.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        Zapisz_D.setIcon(new javax.swing.ImageIcon(getClass().getResource("/organizer/icon_yes_small.png"))); // NOI18N
+        Zapisz_D.setText("Zapisz");
+        Zapisz_D.setEnabled(false);
+        Zapisz_D.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Zapisz_DActionPerformed(evt);
+            }
+        });
 
-        godziny_dyz_do_h.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        Anuluj_D.setIcon(new javax.swing.ImageIcon(getClass().getResource("/organizer/icon_no_small.png"))); // NOI18N
+        Anuluj_D.setText("Anuluj");
+        Anuluj_D.setEnabled(false);
+        Anuluj_D.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Anuluj_DActionPerformed(evt);
+            }
+        });
 
-        dzien_dyz.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela" }));
+        jLabel14.setText("Nauczyciel:");
+        jLabel14.setEnabled(false);
+
+        jLabel15.setText("Dzień:");
+        jLabel15.setEnabled(false);
+
+        jLabel16.setText("Godzina od:");
+        jLabel16.setEnabled(false);
+
+        jLabel17.setText("Godzina do:");
+        jLabel17.setEnabled(false);
+
+        lista_n2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nauczycele" }));
+        lista_n2.setEnabled(false);
+
+        dzien_d.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek" }));
+        dzien_d.setEnabled(false);
+
+        godz_h_od.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24" }));
+        godz_h_od.setEnabled(false);
+
+        godz_min_od.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        godz_min_od.setEnabled(false);
+
+        godz_h_do.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24" }));
+        godz_h_do.setEnabled(false);
+
+        godz_min_do.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        godz_min_do.setEnabled(false);
+
+        jLabel22.setText("Sala :");
+        jLabel22.setEnabled(false);
+
+        sala_d.setEnabled(false);
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel23.setText("Dyżury: ");
+
+        lista_dyzur.setColumns(20);
+        lista_dyzur.setRows(5);
+        jScrollPane3.setViewportView(lista_dyzur);
+
+        lDyzur1.setText("0");
+
+        lDyzur2.setText("/ 10");
+
+        Poprzedni_D.setText("<<  Poprzedni");
+        Poprzedni_D.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Poprzedni_DActionPerformed(evt);
+            }
+        });
+
+        Nast_D.setText("Nastepny >>");
+        Nast_D.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Nast_DActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout fNauczycieleLayout = new javax.swing.GroupLayout(fNauczyciele.getContentPane());
         fNauczyciele.getContentPane().setLayout(fNauczycieleLayout);
@@ -1004,127 +1066,134 @@ public final class GUI extends javax.swing.JFrame {
             .addGroup(fNauczycieleLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lista_dyz)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(fNauczycieleLayout.createSequentialGroup()
                         .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(fNauczycieleLayout.createSequentialGroup()
-                                .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(fNauczycieleLayout.createSequentialGroup()
-                                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(dzien_dyz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(40, 40, 40))
-                                    .addComponent(aktualizuj_dyz))
-                                .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(fNauczycieleLayout.createSequentialGroup()
-                                        .addGap(166, 166, 166)
-                                        .addComponent(Anuluj_N))
-                                    .addGroup(fNauczycieleLayout.createSequentialGroup()
-                                        .addComponent(jLabel16)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(godziny_dyz_od_h, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(godziny_dyz_od_m, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel17)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(godziny_dyz_do_h, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(godziny_dyz_do_m, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(fNauczycieleLayout.createSequentialGroup()
-                                .addComponent(First_dyz)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Previous_dyz)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Next_dyz)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Last_dyz)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sala, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(fNauczycieleLayout.createSequentialGroup()
-                .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(fNauczycieleLayout.createSequentialGroup()
-                        .addGap(165, 165, 165)
-                        .addComponent(Delete))
-                    .addGroup(fNauczycieleLayout.createSequentialGroup()
-                        .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fNauczycieleLayout.createSequentialGroup()
-                                .addGap(258, 258, 258)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fNauczycieleLayout.createSequentialGroup()
-                                .addContainerGap()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(imie, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(11, 11, 11)
-                                .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(fNauczycieleLayout.createSequentialGroup()
-                                        .addComponent(BoxTak)
-                                        .addGap(47, 47, 47)
-                                        .addComponent(BoxNie))
-                                    .addGroup(fNauczycieleLayout.createSequentialGroup()
-                                        .addComponent(jLabel12)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(nazwisko, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(imie_n, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nazwisko_n, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(fNauczycieleLayout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lista_n, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(fNauczycieleLayout.createSequentialGroup()
+                                .addComponent(Zapisz_N)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Anuluj_N))
+                            .addComponent(Nowy_N, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(fNauczycieleLayout.createSequentialGroup()
+                        .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                                .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Zapisz_N)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lista_n, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(46, 46, 46))
+                        .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(fNauczycieleLayout.createSequentialGroup()
+                                .addComponent(Nowy_D)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Zapisz_D)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Anuluj_D))
+                            .addComponent(lista_n2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dzien_d, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(fNauczycieleLayout.createSequentialGroup()
+                                .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(godz_h_do, javax.swing.GroupLayout.Alignment.LEADING, 0, 38, Short.MAX_VALUE)
+                                    .addComponent(godz_h_od, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(godz_min_od, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(godz_min_do, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(sala_d, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)
+                        .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(fNauczycieleLayout.createSequentialGroup()
+                                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(126, 126, 126)
+                                .addComponent(lDyzur1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lDyzur2))
+                            .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fNauczycieleLayout.createSequentialGroup()
+                                    .addComponent(Poprzedni_D)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Nast_D, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
         fNauczycieleLayout.setVerticalGroup(
             fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fNauczycieleLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(20, 20, 20)
+                .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(fNauczycieleLayout.createSequentialGroup()
+                        .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(lista_n, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Nowy_N))
+                        .addGap(23, 23, 23)
+                        .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(imie_n, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12)
+                            .addComponent(nazwisko_n, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Zapisz_N)
+                            .addComponent(Anuluj_N))
+                        .addGap(26, 26, 26)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(fNauczycieleLayout.createSequentialGroup()
+                                .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Nowy_D)
+                                    .addComponent(Zapisz_D)
+                                    .addComponent(Anuluj_D)
+                                    .addComponent(jLabel23))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel14)
+                                    .addComponent(lista_n2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(13, 13, 13)
+                                .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel15)
+                                    .addComponent(dzien_d, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(15, 15, 15)
+                                .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel16)
+                                    .addComponent(godz_h_od, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(godz_min_od, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel17))
+                            .addGroup(fNauczycieleLayout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lDyzur1)
+                                    .addComponent(lDyzur2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(godz_h_do, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(godz_min_do, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel12)
-                    .addComponent(imie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nazwisko, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Zapisz_N)
-                    .addComponent(lista_n, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BoxTak)
-                    .addComponent(BoxNie))
-                .addGap(18, 18, 18)
-                .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel13)
-                    .addComponent(sala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(godziny_dyz_od_h, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(godziny_dyz_od_m, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dzien_dyz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(godziny_dyz_do_m, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(godziny_dyz_do_h, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Anuluj_N)
-                    .addComponent(aktualizuj_dyz))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(fNauczycieleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(First_dyz)
-                    .addComponent(Previous_dyz)
-                    .addComponent(Next_dyz)
-                    .addComponent(Last_dyz))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lista_dyz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Delete)
-                .addContainerGap(128, Short.MAX_VALUE))
+                    .addComponent(jLabel22)
+                    .addComponent(sala_d, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Poprzedni_D)
+                    .addComponent(Nast_D))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         fMain.addTab("Nauczyciele", fNauczyciele);
@@ -1319,12 +1388,12 @@ public final class GUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(fMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(fMain)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(fMain, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -1374,7 +1443,7 @@ String typy= typ_wydarzen.getSelectedItem().toString();
         
         }
        catch (SQLException err){System.out.println(err.getMessage());} 
-        
+         
 
 
 // TODO add your handling code here:
@@ -1413,18 +1482,22 @@ String typy= typ_wydarzen.getSelectedItem().toString();
             {
                 current_row = rs_w.getInt("ID_WYD");
             }
-            current_row ++;
+          int nowy_id =current_row;
+          nowy_id=nowy_id+1;
+         JOptionPane.showMessageDialog(null, "nowy id " + nowy_id + ".");
+           
+         
             
              //System.out.println(date);
 		//System.out.println(formatter.format(date));
                 //data = informat.parse(czas);
             rs_w.moveToInsertRow();
             
-            rs_w.updateInt("id_wyd",current_row);
-            rs_w.updateString("czas_wyd", czas);
-            rs_w.updateString("data_wyd", data_w);
-            rs_w.updateString("miejsce_wyd", miejsce);
-            rs_w.updateString("typ_wyd", typ);
+            rs_w.updateInt("ID_WYD",nowy_id);
+            rs_w.updateString("CZAS_WYD", czas);
+            rs_w.updateString("DATA_WYD", data_w);
+            rs_w.updateString("MIEJSCE_WYD", miejsce);
+            rs_w.updateString("TYP_WYD", typ);
             rs_w.insertRow();
              
             stmt_w.close();
@@ -1575,224 +1648,9 @@ try{
         }
     }//GEN-LAST:event_usun_wydActionPerformed
 
-    private void lista_nActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lista_nActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_lista_nActionPerformed
-
-    private void BoxNieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoxNieActionPerformed
-        jLabel15.setEnabled(false);
-        jLabel16.setEnabled(false);
-        jLabel17.setEnabled(false);
-        jLabel13.setEnabled(false);
-        //dzien_dyzuru.setEnabled(false);
-        //godzina_od_dyzuru.setEnabled(false);
-        //godzina_do_dyzuru.setEnabled(false);
-        sala.setEnabled(false);
-    }//GEN-LAST:event_BoxNieActionPerformed
-
-    private void BoxTakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoxTakActionPerformed
-        jLabel15.setEnabled(true);
-        jLabel16.setEnabled(true);
-        jLabel17.setEnabled(true);
-        jLabel13.setEnabled(true);
-//        dzien_dyzuru.setEnabled(true);
-        //godzina_od_dyzuru.setEnabled(true);
-        //godzina_do_dyzuru.setEnabled(true);
-        sala.setEnabled(true);
-    }//GEN-LAST:event_BoxTakActionPerformed
-
-    private void Anuluj_NActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Anuluj_NActionPerformed
-       try{
-            
-            while(rs_d.previous())
-            {
-                current_row = rs_d.getRow();
-            } 
-            rs_d.absolute(current_row);
-            
-            lista_dyz.setText(rs_d.getString("DZIEN")+ " "+ "od " + rs_d.getString("GODZINA_OD")+ " "+" do " +rs_d.getString("GODZINA_DO") );
-            
-            
-       
-        
-        
-        }
-        catch(SQLException err) {System.out.println(err.getMessage());} 
-    }//GEN-LAST:event_Anuluj_NActionPerformed
-
-    private void Zapisz_NActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Zapisz_NActionPerformed
-        // TODO add your handling code here:
-        
-        String imie_n = imie.getText();
-        String nazwisko_n = nazwisko.getText();
-        try{
-while(rs_n.next())
-            {
-                current_row = rs_n.getInt("ID_NAUCZYCIELA");
-            }
-            current_row ++;
-            rs_n.moveToInsertRow();
-            rs_n.updateInt("ID_NAUCZYCIELA", current_row);
-            rs_n.updateString("IMIE", imie_n);
-            rs_n.updateString("NAZWISKO", nazwisko_n);
-            rs_n.insertRow();
-
-            stmt_n.close();
-            rs_n.close();
-
-            stmt_n = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql2 = "SELECT * FROM NAUCZYCIELE";
-            rs_n = stmt_p.executeQuery(sql2);
-
-        } catch (SQLException err) {
-            System.out.println(err.getMessage());
-        }
-
-    }//GEN-LAST:event_Zapisz_NActionPerformed
-
-    private void Last_dyzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Last_dyzActionPerformed
-      try{
-            while(rs_d.next()){
-                String lista2 = (rs_d.getString("DZIEN")+ " "+ "od " + rs_d.getString("GODZINA_OD")+ " "+" do " +rs_d.getString("GODZINA_DO") );
-
-                
-                lista_dyz.setText(lista2);
-            }
-        } catch (SQLException err) {
-            JOptionPane.showMessageDialog(GUI.this, err.getMessage());
-        }
-    }//GEN-LAST:event_Last_dyzActionPerformed
-
-    private void aktualizuj_dyzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aktualizuj_dyzActionPerformed
-        String miejsce = sala.getText();
-        String data_w =dzien_dyz.getSelectedItem().toString();
-        String czas_od = (godziny_dyz_od_h.getSelectedItem().toString()+":"+godziny_dyz_od_m.getSelectedItem().toString()+":00");
-            SimpleDateFormat informat =  new SimpleDateFormat("hh:mm:ss");
-            String czas_do = (godziny_dyz_do_h.getSelectedItem().toString()+":"+godziny_dyz_do_m.getSelectedItem().toString()+":00");
-        try{
-             
-            
-            while(rs_d.next())
-            {
-                current_row = rs_d.getInt("ID_DYZURU");
-            }
-            current_row ++;
-            
-             //System.out.println(date);
-		//System.out.println(formatter.format(date));
-                //data = informat.parse(czas);
-            rs_d.moveToInsertRow();
-            
-            rs_d.updateInt("id_dyzuru",current_row);
-            rs_d.updateString("godzina_od", czas_od);
-            rs_d.updateString("godzina_do", czas_do);
-            rs_d.updateString("dzien", data_w);
-            
-            rs_d.insertRow();
-             
-            stmt_d.close();
-            rs_w.close();
-             
-            stmt_d = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql3 = "SELECT * FROM DYZURY";
-            rs_d = stmt_d.executeQuery(sql3);
-            
-                while (rs_d.next())
-                {
-                   int id_kol = rs_d.getInt("id_dyzuru");
-                   String id = Integer.toString(id_kol);
-                   String dzien = rs_d.getString("dzien");
-                   String godzina_od = rs_d.getString("godzina_od");
-                   String godzina_do = rs_d.getString("godzina_do");
-                   
-                }
-                
-                while (rs_d.previous()){current_row = rs_d.getRow();}
-                rs_d.absolute(current_row);
-            
-            lista_dyz.setText(rs_d.getString("DZIEN")+ " "+ "od " + rs_d.getString("GODZINA_OD")+ " "+" do " +rs_d.getString("GODZINA_DO") );
-     
-        } catch (SQLException err) {
-            System.out.println(err.getMessage());
-        }  {
-            } 
-    }//GEN-LAST:event_aktualizuj_dyzActionPerformed
-
     private void godziny_wydActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_godziny_wydActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_godziny_wydActionPerformed
-
-    private void First_dyzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_First_dyzActionPerformed
-       try{
-            while(rs_d.previous()){
-               
-                
-                String lista = (rs_d.getString("DZIEN")+ " "+ "od " + rs_d.getString("GODZINA_OD")+ " "+" do " +rs_d.getString("GODZINA_DO") );
-
-                
-                lista_dyz.setText(lista);
-            }
-        } catch (SQLException err) {
-            JOptionPane.showMessageDialog(GUI.this, err.getMessage());
-        }
-    }//GEN-LAST:event_First_dyzActionPerformed
-
-    private void Previous_dyzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Previous_dyzActionPerformed
-       try{
-            if(rs_d.previous()){
-                
-                
-                String lista = (rs_d.getString("DZIEN")+ " "+ "od " + rs_d.getString("GODZINA_OD")+ " "+" do " +rs_d.getString("GODZINA_DO") );
-
-                
-                lista_dyz.setText(lista);
-            } else {
-                rs_d.next();
-                JOptionPane.showMessageDialog(GUI.this, "To jest pierwszy dyżur.");
-            }
-        } catch (SQLException err) {
-            JOptionPane.showMessageDialog(GUI.this, err.getMessage());
-        }
-    }//GEN-LAST:event_Previous_dyzActionPerformed
-
-    private void Next_dyzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Next_dyzActionPerformed
-       try{
-            if(rs_d.next()){
-                
-
-                String lista1 = (rs_d.getString("DZIEN")+ " "+ "od " + rs_d.getString("GODZINA_OD")+ " "+" do " +rs_d.getString("GODZINA_DO") );
-
-                
-                lista_dyz.setText(lista1);
-            } else {
-                rs_d.previous();
-                JOptionPane.showMessageDialog(GUI.this, "To jest osatni dyżur.");
-            }
-        } catch (SQLException err) {
-            JOptionPane.showMessageDialog(GUI.this, err.getMessage());
-        }
-    }//GEN-LAST:event_Next_dyzActionPerformed
-
-    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
-       try {       
-            rs_d.deleteRow();
-            stmt_d.close();
-            rs_d.close();
-            stmt_d = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql = "SELECT * FROM DYZURY";
-            rs_d = stmt_d.executeQuery(sql);
-             
-            rs_d.next();
-            String lista2 = (rs_d.getString("DZIEN")+ " "+ "od " + rs_d.getString("GODZINA_OD")+ " "+" do " +rs_d.getString("GODZINA_DO") );
-
-                
-                lista_dyz.setText(lista2);
-             
-        } catch (SQLException err){
-            JOptionPane.showMessageDialog(GUI.this, err.getMessage());
-        }
-    }//GEN-LAST:event_DeleteActionPerformed
 
     private void update()
     {
@@ -1845,6 +1703,13 @@ while(rs_n.next())
             while(rs_n.next())
             {
                 lista_n.addItem(rs_n.getString("IMIE") + " " + rs_n.getString("NAZWISKO"));
+            }
+            
+            while(rs_n.previous()) {}
+            lista_n2.removeAllItems();
+            while(rs_n.next())
+            {
+                lista_n2.addItem(rs_n.getString("IMIE") + " " + rs_n.getString("NAZWISKO"));
             }
             
         }
@@ -1931,15 +1796,20 @@ while(rs_n.next())
             while(rs_s.next())
             {
                 current_row = rs_s.getInt("ID_SEMESTRU");
-            }
-            current_row ++;
+        
+            }int nowy_id =current_row;
+          nowy_id=nowy_id+1;
+            JOptionPane.showMessageDialog(null, "nowy id " + nowy_id + ".");
+            
+         
+            
 
             //System.out.println(date);
             //System.out.println(formatter.format(date));
             //data = informat.parse(czas);
             rs_s.moveToInsertRow();
 
-            rs_s.updateInt("id_semestru",current_row);
+            rs_s.updateInt("id_semestru",nowy_id);
             rs_s.updateString("NAZWA", nazwa);
             rs_s.updateString("ROK", rok);
 
@@ -1981,6 +1851,7 @@ while(rs_n.next())
     }//GEN-LAST:event_bAnulujZajeciaActionPerformed
 
     private void bZapiszZajeciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bZapiszZajeciaActionPerformed
+        int max_id = 0;
         String sala = tfSala.getText();
         String dzien = dzien_plan1.getSelectedItem().toString();
         int id_nauczyciela = get_id_nauczyciela(cbNauczyciele);
@@ -2000,13 +1871,13 @@ while(rs_n.next())
             while(rs_z.previous());
             while(rs_z.next())
             {
-                current_row = rs_z.getInt("ID_ZAJEC");
+                if (rs_z.getInt("ID_ZAJEC") > max_id) max_id = rs_z.getInt("ID_ZAJEC");
             }
-            current_row ++;
-
+            max_id++;
+            JOptionPane.showMessageDialog(null, max_id);
             rs_z.moveToInsertRow();
 
-            rs_z.updateInt("ID_ZAJEC", current_row);
+            rs_z.updateInt("ID_ZAJEC", max_id);
             rs_z.updateInt("ID_PRZEDMIOTU", id_przedmiotu);
             rs_z.updateString("SALA", sala);
             rs_z.updateString("DZIEN", dzien);
@@ -2025,7 +1896,7 @@ while(rs_n.next())
             stmt_z = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             rs_z = stmt_z.executeQuery("SELECT * FROM ZAJĘCIA");
 
-            while(rs_z.previous());
+            while(rs_z.next());
             
             
             String sql_pl = "select p.NAZWA as NAZWA , g.GODZINA_OD, g.GODZINA_DO, t.NAZWA as Typ, n.IMIE, n.NAZWISKO, z.SALA, z.DZIEN\n" +
@@ -2034,12 +1905,12 @@ while(rs_n.next())
                         "JOIN TYPY_ZAJEC t USING(ID_TYPU)\n" +
                         "JOIN NAUCZYCIELE n USING (ID_NAUCZYCIELA)";
             stmt_pl = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            rs_pl = stmt_z.executeQuery(sql_pl);
+            rs_pl = stmt_pl.executeQuery(sql_pl);
             while(rs_pl.previous());
             int i = 0;
             while(rs_pl.next()) i++;
             while(rs_pl.previous());
-            lZajecia2.setText("/"+Integer.toString(i));
+            lZajecia2.setText("/ "+Integer.toString(i));
             lZajecia1.setText("0");
 
         } catch (SQLException err) {System.out.println(err.getMessage());}
@@ -2185,6 +2056,291 @@ while(rs_n.next())
         }
     }//GEN-LAST:event_bNextActionPerformed
 
+    private void cbPrzedmioty2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPrzedmioty2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbPrzedmioty2ActionPerformed
+
+    private void lista_nActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lista_nActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lista_nActionPerformed
+
+    private void Anuluj_NActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Anuluj_NActionPerformed
+      imie_n.setText("");
+      nazwisko_n.setText("");
+        imie_n.setEnabled(false);
+        nazwisko_n.setEnabled(false);
+        jLabel11.setEnabled(false);
+        jLabel12.setEnabled(false);
+        Zapisz_N.setEnabled(false);
+        Anuluj_N.setEnabled(false);
+    }//GEN-LAST:event_Anuluj_NActionPerformed
+
+    private void Zapisz_NActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Zapisz_NActionPerformed
+        // TODO add your handling code here:
+        String imie = imie_n.getText();
+        String nazwisko = nazwisko_n.getText();
+        if(imie.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Prosze wpisac imię nazuczyciela.","Błąd wpisywania",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(nazwisko.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Prosze wpisać nazwisko nazuczyciela.","Błąd wpisywania",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try{
+                while(rs_n.previous());
+                while(rs_n.next())
+                {
+                    current_row = rs_n.getInt("ID_NAUCZYCIELA");
+                }
+                current_row ++;
+                 
+                 rs_n.moveToInsertRow();
+                 rs_n.updateInt("ID_NAUCZYCIELA",current_row);
+                 rs_n.updateString("IMIE", imie);
+                 rs_n.updateString("NAZWISKO", nazwisko);
+                 rs_n.insertRow();
+                 stmt_n.close();
+                 rs_n.close();
+                 stmt_n = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                 String sql4 = "SELECT * FROM NAUCZYCIELE";
+                 rs_n =stmt_n.executeQuery(sql4);
+                
+                 imie_n.setText("");
+                 nazwisko_n.setText("");
+                 imie_n.setEnabled(false);
+                 nazwisko_n.setEnabled(false);
+                 jLabel11.setEnabled(false);
+                 jLabel12.setEnabled(false);
+                 Zapisz_N.setEnabled(false);
+                 Anuluj_N.setEnabled(false);
+                 update();
+        
+        
+        } catch (SQLException err) {
+                    System.out.println(err.getMessage());
+                }
+
+    }//GEN-LAST:event_Zapisz_NActionPerformed
+
+    private void Nowy_NActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nowy_NActionPerformed
+        imie_n.setEnabled(true);
+        nazwisko_n.setEnabled(true);
+        jLabel11.setEnabled(true);
+        jLabel12.setEnabled(true);
+        Zapisz_N.setEnabled(true);
+        Anuluj_N.setEnabled(true);
+        
+    }//GEN-LAST:event_Nowy_NActionPerformed
+
+    private void Nowy_DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nowy_DActionPerformed
+        // TODO add your handling code here:
+        
+        Zapisz_D.setEnabled(true);
+        Anuluj_D.setEnabled(true);
+        jLabel14.setEnabled(true);
+        jLabel15.setEnabled(true);
+        jLabel16.setEnabled(true);
+        jLabel17.setEnabled(true);
+        jLabel22.setEnabled(true);
+        sala_d.setEnabled(true);
+        lista_n2.setEnabled(true);
+        dzien_d.setEnabled(true);
+        godz_h_od.setEnabled(true);
+        godz_min_od.setEnabled(true);
+        godz_h_do.setEnabled(true);
+        godz_min_do.setEnabled(true);
+    }//GEN-LAST:event_Nowy_DActionPerformed
+
+    private void Anuluj_DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Anuluj_DActionPerformed
+        // TODO add your handling code here:
+        sala_d.setText("");
+        Zapisz_D.setEnabled(false);
+        Anuluj_D.setEnabled(false);
+        jLabel14.setEnabled(false);
+        jLabel15.setEnabled(false);
+        jLabel16.setEnabled(false);
+        jLabel17.setEnabled(false);
+        jLabel22.setEnabled(false);
+        sala_d.setEnabled(false);
+        lista_n2.setEnabled(false);
+        dzien_d.setEnabled(false);
+        godz_h_od.setEnabled(false);
+        godz_min_od.setEnabled(false);
+        godz_h_do.setEnabled(false);
+        godz_min_do.setEnabled(false);
+        
+    }//GEN-LAST:event_Anuluj_DActionPerformed
+
+    private void Zapisz_DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Zapisz_DActionPerformed
+        // TODO add your handling code here:
+        String dzien = dzien_d.getSelectedItem().toString();
+        String sala = sala_d.getText();
+        int id_nauczyciela = get_id_nauczyciela(lista_n2);
+        String czas_od = (godz_h_od.getSelectedItem().toString()+":"+godz_min_od.getSelectedItem().toString() + ":00");
+        String czas_do = (godz_h_do.getSelectedItem().toString()+":"+godz_min_do.getSelectedItem().toString() + ":00");
+        SimpleDateFormat informat = new SimpleDateFormat("hh:mm:ss");
+        
+        
+        
+        
+        try{
+            while(rs_d.previous());
+            while(rs_d.next())
+            {
+                current_row = rs_d.getInt("ID_DYZURU");
+            }
+            current_row ++;
+            rs_d.moveToInsertRow();
+            
+            rs_d.updateInt("ID_DYZURU", current_row);
+            rs_d.updateString("DZIEN", dzien);
+            rs_d.updateString("SALA", sala);
+            rs_d.updateString("GODZINA_OD", czas_od);
+            rs_d.updateString("GODZINA_DO", czas_do);
+            rs_d.updateInt("ID_NAUCZYCIELA", id_nauczyciela);
+            rs_d.insertRow();
+            
+            stmt_d.close();
+            rs_d.close();
+            stmt_n.close();
+            rs_n.close();
+            
+            stmt_d = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            rs_d = stmt_d. executeQuery("SELECT * FROM DYZURY");
+            
+            while(rs_d.previous());
+            
+            String sql_n1 = "SELECT IMIE, NAZWISKO, DZIEN, GODZINA_OD, GODZINA_DO, SALA\n"+
+                    "FROM DYZURY JOIN NAUCZYCIELE USING(ID_NAUCZYCIELA)";
+                        stmt_n1 = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            rs_n1 = stmt_n1.executeQuery(sql_n1);
+            while(rs_n1.previous());
+            int i = 0;
+            while(rs_n1.next()) i++;
+            while(rs_n1.previous());
+            lDyzur2.setText("/ " + Integer.toString(i));
+            lDyzur1.setText("0");
+            
+        } catch (SQLException err) {System.out.println(err.getMessage());}
+        sala_d.setText(" ");
+        Zapisz_D.setEnabled(false);
+        Anuluj_D.setEnabled(false);
+        jLabel14.setEnabled(false);
+        jLabel15.setEnabled(false);
+        jLabel16.setEnabled(false);
+        jLabel17.setEnabled(false);
+        jLabel22.setEnabled(false);
+        sala_d.setEnabled(false);
+        lista_n2.setEnabled(false);
+        dzien_d.setEnabled(false);
+        godz_h_od.setEnabled(false);
+        godz_min_od.setEnabled(false);
+        godz_h_do.setEnabled(false);
+        godz_min_do.setEnabled(false);
+        
+    }//GEN-LAST:event_Zapisz_DActionPerformed
+
+    private void Poprzedni_DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Poprzedni_DActionPerformed
+        // TODO add your handling code here:
+        try{
+            if(rs_n1.previous()){
+                /*int godz_od = rs_p.getInt("GODZINA_OD");
+                String s_godz_od = Integer.toString(godz_od);
+                int godz_do = rs_p.getInt("GODZINA_OD");
+                String s_godz_do = Integer.toString(godz_do);*/
+
+                String imie = rs_n1.getString("IMIE");
+                String nazwisko = rs_n1.getString("NAZWISKO");
+                String dzien = rs_n1.getString("DZIEN");
+                String godzina_od = rs_n1.getString("GODZINA_OD");
+                String godzina_do = rs_n1.getString("GODZINA_DO");
+                String sala = rs_n1.getString("SALA");
+
+                lista_dyzur.setText(imie + " " + nazwisko + "\n"
+                    + dzien + " " + godzina_od + " " + godzina_do + "\n" 
+                        + sala
+                );
+                
+                int i = Integer.parseInt(lDyzur1.getText())-1;
+                lDyzur1.setText(Integer.toString(i));
+
+            } else {
+                rs_n1.next();
+                JOptionPane.showMessageDialog(GUI.this, "To jest pierwszy przedmiot.");
+            }
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(GUI.this, err.getMessage());
+        }
+    }//GEN-LAST:event_Poprzedni_DActionPerformed
+
+    private void Nast_DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nast_DActionPerformed
+    
+        try{
+            if(rs_n1.next()){
+                /*int godz_od = rs_p.getInt("GODZINA_OD");
+                String s_godz_od = Integer.toString(godz_od);
+                int godz_do = rs_p.getInt("GODZINA_OD");
+                String s_godz_do = Integer.toString(godz_do);*/
+
+                String imie = rs_n1.getString("IMIE");
+                String nazwisko = rs_n1.getString("NAZWISKO");
+                String dzien = rs_n1.getString("DZIEN");
+                String godzina_od = rs_n1.getString("GODZINA_OD");
+                String godzina_do = rs_n1.getString("GODZINA_DO");
+                String sala = rs_n1.getString("SALA");
+
+                lista_dyzur.setText(imie + " " + nazwisko + "\n"
+                    + dzien + " " + godzina_od + " " + godzina_do + "\n" 
+                        + sala
+                );
+                
+                int i = Integer.parseInt(lDyzur1.getText())+1;
+                lDyzur1.setText(Integer.toString(i));
+
+            } else {
+                rs_n1.previous();
+                JOptionPane.showMessageDialog(GUI.this, "To jest ostatni przedmiot.");
+            }
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(GUI.this, err.getMessage());
+        }
+    }//GEN-LAST:event_Nast_DActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    
+        int id_z = Integer.parseInt(zTF.getText());
+        try{
+            
+        while(rs_pl.previous());
+        for(int i = 0; i <= id_z; i++)
+        {
+            rs_pl.next();
+           String nazwa = rs_pl.getString("NAZWA");
+                String typ = rs_pl.getString("TYP");
+                String imie = rs_pl.getString("IMIE");
+                String nazwisko = rs_pl.getString("NAZWISKO");
+                String sala = rs_pl.getString("SALA");
+                String dzien = rs_pl.getString("DZIEN");
+
+                tfZajecia.setText(nazwa + "\n" + typ + "\n"
+                    + imie + " " + nazwisko + "\n" + dzien + ", "
+                    + sala + "\n"//s_godz_od + " - " + s_godz_do +"\n"
+                );
+                
+                int j = Integer.parseInt(lZajecia1.getText())+1;
+                lZajecia1.setText(Integer.toString(i)); 
+        }
+     
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(GUI.this, err.getMessage());
+        }    
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     private void Zajecia_set_buttons(boolean b)
     {
         l1.setEnabled(b);
@@ -2243,17 +2399,15 @@ while(rs_n.next())
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Anuluj_D;
     private javax.swing.JButton Anuluj_N;
-    private javax.swing.JRadioButton BoxNie;
-    private javax.swing.JRadioButton BoxTak;
-    private javax.swing.JButton Delete;
-    private javax.swing.JButton First_dyz;
-    private javax.swing.JButton Last_dyz;
-    private javax.swing.JButton Next_dyz;
-    private javax.swing.JButton Previous_dyz;
+    private javax.swing.JButton Nast_D;
+    private javax.swing.JButton Nowy_D;
+    private javax.swing.JButton Nowy_N;
+    private javax.swing.JButton Poprzedni_D;
+    private javax.swing.JButton Zapisz_D;
     private javax.swing.JButton Zapisz_N;
     private javax.swing.JButton Zapisz_sem;
-    private javax.swing.JButton aktualizuj_dyz;
     private javax.swing.JButton anuluj_wyd;
     private javax.swing.JButton bAnulujPrzedmiot;
     private javax.swing.JButton bAnulujZajecia;
@@ -2272,7 +2426,7 @@ while(rs_n.next())
     private javax.swing.JComboBox cbSemestry;
     private javax.swing.JComboBox cbTyp;
     private javax.swing.JButton dodaj_wyd;
-    private javax.swing.JComboBox dzien_dyz;
+    private javax.swing.JComboBox dzien_d;
     private javax.swing.JComboBox dzien_plan1;
     private javax.swing.JComboBox dzien_wyd;
     private javax.swing.JTabbedPane fMain;
@@ -2283,15 +2437,16 @@ while(rs_n.next())
     private javax.swing.JInternalFrame fStart;
     private javax.swing.JInternalFrame fTest;
     private javax.swing.JInternalFrame fWydarzenia;
-    private javax.swing.JComboBox godziny_dyz_do_h;
-    private javax.swing.JComboBox godziny_dyz_do_m;
-    private javax.swing.JComboBox godziny_dyz_od_h;
-    private javax.swing.JComboBox godziny_dyz_od_m;
+    private javax.swing.JComboBox godz_h_do;
+    private javax.swing.JComboBox godz_h_od;
+    private javax.swing.JComboBox godz_min_do;
+    private javax.swing.JComboBox godz_min_od;
     private javax.swing.JComboBox godziny_wyd;
-    private javax.swing.JTextField imie;
+    private javax.swing.JTextField imie_n;
     private javax.swing.JTextField inny_typ;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2303,8 +2458,11 @@ while(rs_n.next())
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
@@ -2315,8 +2473,10 @@ while(rs_n.next())
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel l1;
     private javax.swing.JLabel l2;
     private javax.swing.JLabel l3;
@@ -2324,16 +2484,19 @@ while(rs_n.next())
     private javax.swing.JLabel l5;
     private javax.swing.JLabel l6;
     private javax.swing.JLabel l7;
+    private javax.swing.JLabel lDyzur1;
+    private javax.swing.JLabel lDyzur2;
     private javax.swing.JLabel lZajecia1;
     private javax.swing.JLabel lZajecia2;
-    private javax.swing.JTextField lista_dyz;
+    private javax.swing.JTextArea lista_dyzur;
     private javax.swing.JComboBox lista_n;
+    private javax.swing.JComboBox lista_n2;
     private javax.swing.JTextField lista_wyd;
     private javax.swing.JTextField miejsce_wydarzenia;
     private javax.swing.JComboBox miesiac_wyd;
     private javax.swing.JComboBox minuty_wyd;
     private javax.swing.JToggleButton nast_wyd;
-    private javax.swing.JTextField nazwisko;
+    private javax.swing.JTextField nazwisko_n;
     private javax.swing.JButton ost_wyd;
     private javax.swing.JButton pier_wyd;
     private javax.swing.JToggleButton pop_wyd;
@@ -2346,7 +2509,7 @@ while(rs_n.next())
     private javax.swing.JScrollPane sPlan3;
     private javax.swing.JScrollPane sPlan4;
     private javax.swing.JScrollPane sPlan5;
-    private javax.swing.JTextField sala;
+    private javax.swing.JTextField sala_d;
     private javax.swing.JComboBox semestr;
     private javax.swing.JTable tGodz;
     private javax.swing.JTable tPlan;
@@ -2355,6 +2518,7 @@ while(rs_n.next())
     private javax.swing.JTextArea tfZajecia;
     private javax.swing.JComboBox typ_wydarzen;
     private javax.swing.JButton usun_wyd;
+    private javax.swing.JTextField zTF;
     private javax.swing.JButton zapisz_wyd;
     private javax.swing.JButton zmien_wyd;
     // End of variables declaration//GEN-END:variables
